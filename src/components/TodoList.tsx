@@ -11,7 +11,7 @@ export default function TodoList() {
       title: "프로젝트 계획 수립하기",
       completed: false,
       tags: ["업무", "중요", "계획"],
-      color: "#D0EEEB",
+      color: "#d0eeeb",
     },
     {
       id: 2,
@@ -69,9 +69,13 @@ export default function TodoList() {
             <div
               className={`w-8 h-8 rounded-full ${
                 todo.completed
-                  ? `bg-[${todo.color}] text-white`
+                  ? "text-white"
                   : "bg-white border-2 border-gray-300"
               } flex items-center justify-center cursor-pointer transition-colors duration-200`}
+              style={{
+                backgroundColor: todo.completed ? todo.color : undefined,
+                border: todo.completed ? `1.5px solid ${todo.color}` : undefined
+              }}
               onClick={() => toggleComplete(todo.id)}
             >
               {todo.completed && (
