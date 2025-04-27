@@ -63,13 +63,13 @@ export default function TodoList() {
         {todos.map((todo) => (
           <li
             key={todo.id}
-            className={`p-6 rounded-xl flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow duration-200`}
-            style={{ backgroundColor: todo.color }}
+            className={`p-6 rounded-xl bg-gray-50 flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow duration-200`}
+            style={{ border: `1.5px solid ${todo.color}` }}
           >
             <div
               className={`w-8 h-8 rounded-full ${
                 todo.completed
-                  ? "bg-blue-200 text-white"
+                  ? `bg-[${todo.color}] text-white`
                   : "bg-white border-2 border-gray-300"
               } flex items-center justify-center cursor-pointer transition-colors duration-200`}
               onClick={() => toggleComplete(todo.id)}
@@ -113,7 +113,7 @@ export default function TodoList() {
                 {todo.tags.map((tag, index) => (
                   <span
                     key={index}
-                    className="text-xs bg-white/50 text-gray-700 rounded-full px-2 py-1 hover:bg-white/80 transition-colors duration-200"
+                    className="text-xs bg-white text-gray-700 rounded-full px-2 py-1 hover:bg-white/80 transition-colors duration-200"
                   >
                     {tag}
                   </span>

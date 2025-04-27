@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import CoverExampleSrc from "@/assets/cover-example.jpg";
+import CoverExampleSrc from "@/assets/cover-example2.jpeg";
 import { useState } from "react";
 
 export default function Cover() {
