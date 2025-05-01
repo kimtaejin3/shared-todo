@@ -5,6 +5,7 @@ import LogoImgSrc from "@/assets/logo.png";
 import NotificationSvgSrc from "@/assets/icons/notification.svg";
 import UserSvgSrc from "@/assets/icons/user.svg";
 import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 
 interface Notification {
   id: number;
@@ -98,10 +99,12 @@ export default function Header() {
 
   return (
     <header className="flex items-center justify-between py-4">
-      <h1 className="flex items-center">
-        <Image src={LogoImgSrc} alt="Logo" width={32} height={32} />
-        <span className="sr-only">Shared Todo App</span>
-      </h1>
+      <Link href="/" className="cursor-pointer">
+        <h1 className="flex items-center">
+          <Image src={LogoImgSrc} alt="Logo" width={32} height={32} />
+          <span className="sr-only">Shared Todo App</span>
+        </h1>
+      </Link>
       <div className="flex items-center gap-3">
         <div className="relative">
           <button
@@ -204,15 +207,17 @@ export default function Header() {
             </div>
           )}
         </div>
-        <button className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
-          <Image
-            src={UserSvgSrc}
-            alt="User"
-            width={16}
-            height={16}
-            className="opacity-70"
-          />
-        </button>
+        <Link href="/profile">
+          <button className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
+            <Image
+              src={UserSvgSrc}
+              alt="User"
+              width={16}
+              height={16}
+              className="opacity-70"
+            />
+          </button>
+        </Link>
       </div>
     </header>
   );
