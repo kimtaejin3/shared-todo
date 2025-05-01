@@ -119,9 +119,7 @@ export default function Header() {
               height={16}
             />
             {unreadCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-[#60a5fa] text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center shadow-sm font-medium backdrop-blur-sm opacity-55">
-                {unreadCount}
-              </span>
+              <span className="absolute top-1 right-1 bg-red-500 w-1.5 h-1.5 rounded-full"></span>
             )}
           </button>
 
