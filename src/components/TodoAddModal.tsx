@@ -5,7 +5,11 @@ import Image from "next/image";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale";
+import { format } from "date-fns";
 import CloseSvgSrc from "@/assets/icons/close.svg";
+
+// DatePicker 커스텀 스타일
+import "./date-picker-custom.css";
 
 interface TodoAddModalProps {
   isOpen: boolean;
@@ -217,7 +221,7 @@ export default function TodoAddModal({
             >
               날짜
             </label>
-            <div className="relative">
+            <div className="relative w-full">
               <DatePicker
                 id="date"
                 selected={date}
@@ -226,6 +230,16 @@ export default function TodoAddModal({
                 locale={ko}
                 className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
                 showPopperArrow={false}
+                wrapperClassName="w-full"
+                calendarClassName="custom-datepicker"
+                dayClassName={(dateValue) =>
+                  dateValue &&
+                  format(dateValue, "yyyy-MM-dd") === format(date, "yyyy-MM-dd")
+                    ? "selected-day"
+                    : ""
+                }
+                popperClassName="custom-popper"
+                popperPlacement="bottom-start"
               />
               <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
                 <svg
@@ -275,7 +289,7 @@ export default function TodoAddModal({
               <input
                 type="text"
                 id="tags"
-                className="flex-1 border border-gray-300 rounded-l-lg p-3 focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                className="flex-1 border border-gray-300 rounded-l-lg p-3 focus:outline-none focus:border-none focus:ring-2 focus:ring-black focus:border-transparent"
                 placeholder="태그를 입력하고 엔터 또는 추가 버튼을 누르세요"
                 value={tagInput}
                 onChange={(e) => setTagInput(e.target.value)}
