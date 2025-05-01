@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useFadeIn } from "@/hooks";
+import { useFadeIn, useModalEvents } from "@/hooks";
 
 interface FriendAddModalProps {
   isOpen: boolean;
@@ -26,42 +26,8 @@ export default function FriendAddModal({
     }
   }, [isOpen]);
 
-  // 모달 외부 클릭 감지
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        modalRef.current &&
-        !modalRef.current.contains(event.target as Node)
-      ) {
-        onClose();
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen, onClose]);
-
-  // ESC 키 감지
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener("keydown", handleKeyDown);
-    }
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isOpen, onClose]);
+  // 모달 이벤트(외부 클릭, ESC 키) 처리
+  useModalEvents(modalRef, isOpen, onClose);
 
   // 폼 제출 처리
   const handleSubmit = (e: React.FormEvent) => {

@@ -73,24 +73,27 @@ export default function Header() {
     );
   };
 
-  // 팝오버 외부 클릭 감지하여 닫기
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        notificationRef.current &&
-        !notificationRef.current.contains(event.target as Node) &&
-        buttonRef.current &&
-        !buttonRef.current.contains(event.target as Node)
-      ) {
-        setShowNotifications(false);
-      }
-    };
+  // 커스텀 외부 클릭 핸들러 - notification과 button 모두 체크
+  const handleOutsideClick = (event: MouseEvent) => {
+    if (
+      notificationRef.current &&
+      !notificationRef.current.contains(event.target as Node) &&
+      buttonRef.current &&
+      !buttonRef.current.contains(event.target as Node)
+    ) {
+      setShowNotifications(false);
+    }
+  };
 
-    document.addEventListener("mousedown", handleClickOutside);
+  // document 이벤트 리스너 등록
+  useEffect(() => {
+    if (typeof window === "undefined" || !showNotifications) return;
+
+    document.addEventListener("mousedown", handleOutsideClick);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, []);
+  }, [showNotifications]);
 
   // 읽지 않은 알림 개수
   const unreadCount = notifications.filter(

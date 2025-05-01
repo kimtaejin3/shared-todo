@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { useToastFadeIn } from "@/hooks";
+import { useToastFadeIn, useOutsideClick } from "@/hooks";
 
 interface Cheerleader {
   id: string;
@@ -65,21 +65,7 @@ export default function TodoDetail({
   };
 
   // 팝오버 외부 클릭 감지
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        detailRef.current &&
-        !detailRef.current.contains(event.target as Node)
-      ) {
-        onClose();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [onClose]);
+  useOutsideClick(detailRef, true, onClose);
 
   // 팝오버 위치 조정 (화면 밖으로 나가지 않도록)
   const adjustedPosition = {
