@@ -6,6 +6,10 @@ import Image from "next/image";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale";
+import { format } from "date-fns";
+
+// DatePicker 커스텀 스타일
+import "./date-picker-custom.css";
 
 interface Todo {
   id: number;
@@ -87,13 +91,34 @@ export default function TodoList() {
     <div className="mt-10">
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-3">
-          <div className="relative">
+          <div className="relative w-full max-w-xs">
             <DatePicker
               selected={selectedDate}
               onChange={(date: Date | null) => date && setSelectedDate(date)}
               dateFormat="yyyy년 MM월 dd일"
               locale={ko}
-              className="bg-white border border-gray-200 p-3 rounded-xl shadow-sm text-gray-700 font-medium cursor-pointer hover:border-blue-300 transition-all focus:outline-none focus:ring-2 focus:ring-blue-200 w-48"
+              className="bg-white border border-gray-200 p-3 rounded-xl shadow-sm text-gray-700 font-medium cursor-pointer hover:border-blue-300 transition-all focus:outline-none focus:ring-2 focus:ring-blue-200 w-full"
+              showPopperArrow={false}
+              calendarClassName="custom-datepicker"
+              dayClassName={(date) =>
+                date &&
+                format(date, "yyyy-MM-dd") ===
+                  format(selectedDate, "yyyy-MM-dd")
+                  ? "selected-day"
+                  : ""
+              }
+              popperClassName="custom-popper"
+              popperPlacement="bottom-start"
+              popperModifiers={
+                [
+                  {
+                    name: "offset",
+                    options: {
+                      offset: [0, 8],
+                    },
+                  },
+                ] as any
+              }
             />
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
               <svg
@@ -107,7 +132,7 @@ export default function TodoList() {
               </svg>
             </div>
           </div>
-          <span className="text-gray-500 text-sm">
+          <span className="text-gray-500 text-sm flex-shrink-0">
             {filteredTodos.length > 0
               ? `${filteredTodos.length}개의 할 일이 있습니다`
               : "할 일이 없습니다"}
