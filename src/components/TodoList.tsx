@@ -211,7 +211,6 @@ export default function TodoList({
             <li
               key={todo.id}
               className="p-6 rounded-xl bg-white flex items-start gap-4 shadow-sm hover:shadow-md transition-all duration-200 border border-gray-100"
-              style={{ borderLeft: `4px solid ${todo.color}` }}
             >
               {!isFriendTodo && (
                 <div
