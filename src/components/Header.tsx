@@ -133,7 +133,7 @@ export default function Header() {
                 {unreadCount > 0 && (
                   <button
                     onClick={markAllAsRead}
-                    className="text-xs text-blue-500 hover:text-blue-700 font-medium transition-colors duration-200 px-2 py-1 rounded-lg hover:bg-blue-50"
+                    className="text-xs text-gray-500 hover:text-gray-700 font-medium transition-colors duration-200 px-2 py-1 rounded-lg hover:bg-blue-50"
                   >
                     모두 읽음
                   </button>
@@ -175,7 +175,7 @@ export default function Header() {
                                 {notification.time}
                               </p>
                               {!notification.read && (
-                                <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                                <span className="w-2 h-2 rounded-full bg-red-500"></span>
                               )}
                             </div>
                           </div>
@@ -207,13 +207,7 @@ export default function Header() {
         </div>
         <Link href="/profile">
           <button className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
-            <Image
-              src={UserSvgSrc}
-              alt="User"
-              width={16}
-              height={16}
-              className="opacity-70"
-            />
+            <Image src={UserSvgSrc} alt="User" width={16} height={16} />
           </button>
         </Link>
       </div>
