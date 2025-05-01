@@ -72,9 +72,21 @@
   font-weight: 500 !important;
 }
 
+.selected-day {
+  background-color: #60a5fa !important;
+  color: white !important;
+  font-weight: 500 !important;
+}
+
 .react-datepicker__day--today {
   font-weight: 600 !important;
   color: #60a5fa !important;
+}
+
+/* 현재일이 선택되었을 때 글자색 변경 */
+.react-datepicker__day--today.react-datepicker__day--selected,
+.react-datepicker__day--today.selected-day {
+  color: white !important;
 }
 
 .react-datepicker__day--keyboard-selected {
@@ -111,4 +123,9 @@
   .custom-datepicker {
     width: 280px !important;
   }
+}
+
+/* z-index 설정 */
+.custom-popper {
+  z-index: 10;
 }
