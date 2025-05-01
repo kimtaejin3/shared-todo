@@ -6,9 +6,10 @@ import Image from "next/image";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale";
-import { format } from "date-fns";
+import { format, isSameDay } from "date-fns";
 import TodoDetail from "./TodoDetail";
 import TodoAddModal from "./TodoAddModal";
+import { AddButton } from "@/components/common";
 
 // DatePicker 커스텀 스타일
 import "./date-picker-custom.css";
@@ -220,34 +221,10 @@ export default function TodoList({
         </div>
 
         {!isFriendTodo && (
-          <button
+          <AddButton
             onClick={() => setIsAddModalOpen(true)}
-            className="bg-white text-sm text-gray-700 px-4 py-2.5 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2 border border-gray-200 shadow-sm font-medium"
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8 3.33334V12.6667"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M3.33334 8H12.6667"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span>할 일 추가</span>
-          </button>
+            label="할 일 추가"
+          />
         )}
 
         {isFriendTodo && (

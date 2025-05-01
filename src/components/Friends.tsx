@@ -7,6 +7,7 @@ import NextSvgSrc from "@/assets/icons/next.svg";
 import MockImageSrc from "@/assets/mock_image.jpeg";
 import { useRef, useState } from "react";
 import FriendAddModal from "./FriendAddModal";
+import { AddButton } from "@/components/common";
 
 // 더미 친구 데이터
 const FRIENDS = [
@@ -64,34 +65,10 @@ export default function Friends() {
       <div className="flex justify-between items-center w-full">
         <h3 className="text-lg font-semibold text-gray-700">내 친구들</h3>
         <div className="flex gap-2">
-          <button
+          <AddButton
             onClick={() => setIsAddModalOpen(true)}
-            className="bg-white text-gray-700 rounded-xl text-sm px-4 py-2 border border-gray-200 shadow-sm hover:bg-gray-50 transition-colors flex items-center gap-1"
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8 3.33334V12.6667"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M3.33334 8H12.6667"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span>친구 추가</span>
-          </button>
+            label="친구 추가"
+          />
         </div>
       </div>
       <div className="relative w-full bg-white p-4 rounded-xl border border-gray-100 shadow-sm overflow-hidden">
