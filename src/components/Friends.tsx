@@ -1,10 +1,24 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import PreviousSvgSrc from "@/assets/icons/previous.svg";
 import NextSvgSrc from "@/assets/icons/next.svg";
 import MockImageSrc from "@/assets/mock_image.jpeg";
 import { useRef } from "react";
+
+// 더미 친구 데이터
+const FRIENDS = [
+  { id: "1", name: "김철수", image: MockImageSrc },
+  { id: "2", name: "이영희", image: null },
+  { id: "3", name: "박지민", image: null },
+  { id: "4", name: "정민준", image: null },
+  { id: "5", name: "최영희", image: null },
+  { id: "6", name: "강승호", image: null },
+  { id: "7", name: "윤서아", image: null },
+  { id: "8", name: "임지훈", image: null },
+  { id: "9", name: "한수민", image: null },
+];
 
 export default function Friends() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -28,7 +42,7 @@ export default function Friends() {
   };
 
   return (
-    <div className="flex flex-col gap-6 w-full mt-6">
+    <div className="flex flex-col gap-6 w-full">
       <div className="flex justify-between items-center w-full">
         <h3 className="text-lg font-semibold text-gray-700">내 친구들</h3>
         <span className="bg-white text-gray-600 rounded-xl text-sm px-4 py-2 border border-gray-200 shadow-sm hover:bg-gray-50 transition-colors">
@@ -47,29 +61,34 @@ export default function Friends() {
             ref={scrollContainerRef}
             className="flex items-center gap-4 overflow-x-auto scrollbar-hide py-2 w-full pl-1 pr-2"
           >
-            {[...Array(9)].map((_, index) => (
-              <div
-                key={index}
-                className={`relative flex-shrink-0 w-14 h-14 rounded-full ${
-                  index === 0 ? "ring-2 ring-blue-300 ring-offset-2" : ""
-                } overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer`}
-              >
-                {index === 0 ? (
-                  <Image
-                    fill
-                    objectFit="cover"
-                    src={MockImageSrc}
-                    alt={`Friend ${index + 1}`}
-                    className="hover:scale-105 transition-transform duration-200"
-                  />
-                ) : (
-                  <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                    <span className="text-gray-500 font-medium text-sm">
-                      {String.fromCharCode(65 + index)}
-                    </span>
+            {FRIENDS.map((friend, index) => (
+              <Link href={`/friends/${friend.id}`} key={friend.id}>
+                <div
+                  className={`relative flex-shrink-0 w-14 h-14 rounded-full ${
+                    index === 0 ? "ring-2 ring-blue-400 ring-offset-2" : ""
+                  } overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer`}
+                >
+                  {friend.image ? (
+                    <Image
+                      fill
+                      objectFit="cover"
+                      src={friend.image}
+                      alt={`Friend ${friend.name}`}
+                      className="hover:scale-105 transition-transform duration-200"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                      <span className="text-gray-500 font-medium text-sm">
+                        {friend.name.charAt(0)}
+                      </span>
+                    </div>
+                  )}
+
+                  <div className="absolute inset-x-0 -bottom-6 bg-black bg-opacity-70 text-white text-xs py-1 text-center opacity-0 hover:opacity-100 hover:-translate-y-6 transition-all duration-200">
+                    {friend.name}
                   </div>
-                )}
-              </div>
+                </div>
+              </Link>
             ))}
           </div>
           <button
