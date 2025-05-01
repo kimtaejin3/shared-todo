@@ -29,7 +29,7 @@ export default function Header() {
       todoTitle: "프로젝트 계획 수립하기",
       time: "10분 전",
       read: false,
-      color: "#d0eeeb",
+      color: "#60a5fa",
     },
     {
       id: 2,
@@ -37,7 +37,7 @@ export default function Header() {
       todoTitle: "주간 회의 준비하기",
       time: "1시간 전",
       read: false,
-      color: "#E2E6FD",
+      color: "#60a5fa",
     },
     {
       id: 3,
@@ -45,7 +45,7 @@ export default function Header() {
       todoTitle: "쇼핑몰 디자인 검토",
       time: "2시간 전",
       read: true,
-      color: "#FFF0EA",
+      color: "#60a5fa",
     },
     {
       id: 4,
@@ -53,7 +53,7 @@ export default function Header() {
       todoTitle: "이메일 답장하기",
       time: "어제",
       read: true,
-      color: "#F0EDED",
+      color: "#60a5fa",
     },
   ]);
 
@@ -119,7 +119,7 @@ export default function Header() {
               height={16}
             />
             {unreadCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-gray-800/60 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center shadow-sm font-medium backdrop-blur-sm opacity-55">
+              <span className="absolute -top-1 -right-1 bg-[#60a5fa] text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center shadow-sm font-medium backdrop-blur-sm opacity-55">
                 {unreadCount}
               </span>
             )}
