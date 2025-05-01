@@ -12,6 +12,7 @@ interface Notification {
   todoTitle: string;
   time: string;
   read: boolean;
+  color?: string;
 }
 
 export default function Header() {
@@ -27,6 +28,7 @@ export default function Header() {
       todoTitle: "프로젝트 계획 수립하기",
       time: "10분 전",
       read: false,
+      color: "#d0eeeb",
     },
     {
       id: 2,
@@ -34,6 +36,7 @@ export default function Header() {
       todoTitle: "주간 회의 준비하기",
       time: "1시간 전",
       read: false,
+      color: "#E2E6FD",
     },
     {
       id: 3,
@@ -41,6 +44,7 @@ export default function Header() {
       todoTitle: "쇼핑몰 디자인 검토",
       time: "2시간 전",
       read: true,
+      color: "#FFF0EA",
     },
     {
       id: 4,
@@ -48,6 +52,7 @@ export default function Header() {
       todoTitle: "이메일 답장하기",
       time: "어제",
       read: true,
+      color: "#F0EDED",
     },
   ]);
 
@@ -97,21 +102,21 @@ export default function Header() {
         <Image src={LogoImgSrc} alt="Logo" width={32} height={32} />
         <span className="sr-only">Shared Todo App</span>
       </h1>
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-3">
         <div className="relative">
           <button
             ref={buttonRef}
-            className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-200 relative"
+            className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors duration-200 relative"
             onClick={() => setShowNotifications(!showNotifications)}
           >
             <Image
               src={NotificationSvgSrc}
               alt="Notification"
-              width={14}
-              height={14}
+              width={16}
+              height={16}
             />
             {unreadCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 bg-gray-800/60 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center shadow-sm font-medium backdrop-blur-sm opacity-55">
                 {unreadCount}
               </span>
             )}
@@ -120,36 +125,41 @@ export default function Header() {
           {showNotifications && (
             <div
               ref={notificationRef}
-              className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-10"
+              className="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-lg border border-gray-100 z-10 overflow-hidden"
             >
-              <div className="p-3 border-b border-gray-100 flex justify-between items-center">
-                <h3 className="text-md font-semibold text-gray-700">알림</h3>
+              <div className="p-4 border-b border-gray-100 flex justify-between items-center">
+                <h3 className="text-base font-semibold text-gray-700">알림</h3>
                 {unreadCount > 0 && (
                   <button
                     onClick={markAllAsRead}
-                    className="text-xs text-blue-500 hover:text-blue-700"
+                    className="text-xs text-blue-500 hover:text-blue-700 font-medium transition-colors duration-200 px-2 py-1 rounded-lg hover:bg-blue-50"
                   >
-                    모두 읽음 처리
+                    모두 읽음
                   </button>
                 )}
               </div>
-              <div className="max-h-96 overflow-y-auto">
+              <div className="max-h-[calc(100vh-250px)] overflow-y-auto">
                 {notifications.length > 0 ? (
                   <ul>
                     {notifications.map((notification) => (
                       <li
                         key={notification.id}
-                        className={`p-3 border-b border-gray-100 hover:bg-gray-50 cursor-pointer ${
-                          !notification.read ? "bg-blue-50" : ""
+                        className={`px-4 py-3 border-b border-gray-50 hover:bg-gray-50 cursor-pointer transition-colors duration-200 ${
+                          !notification.read ? "bg-blue-50/40" : ""
                         }`}
                         onClick={() => markAsRead(notification.id)}
                       >
-                        <div className="flex items-start gap-2">
-                          <div className="w-8 h-8 rounded-full bg-blue-100 flex-shrink-0 flex items-center justify-center text-blue-500 font-bold">
+                        <div className="flex items-start gap-3">
+                          <div
+                            className="w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center font-bold text-white shadow-sm"
+                            style={{
+                              backgroundColor: notification.color || "#c0c0c0",
+                            }}
+                          >
                             {notification.userName.charAt(0)}
                           </div>
                           <div className="flex-1">
-                            <p className="text-sm text-gray-700">
+                            <p className="text-sm text-gray-700 leading-snug">
                               <span className="font-semibold">
                                 {notification.userName}
                               </span>
@@ -159,25 +169,49 @@ export default function Header() {
                               </span>
                               "을 응원합니다!
                             </p>
-                            <p className="text-xs text-gray-500 mt-1">
-                              {notification.time}
-                            </p>
+                            <div className="flex justify-between items-center mt-1.5">
+                              <p className="text-xs text-gray-400">
+                                {notification.time}
+                              </p>
+                              {!notification.read && (
+                                <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                              )}
+                            </div>
                           </div>
                         </div>
                       </li>
                     ))}
                   </ul>
                 ) : (
-                  <div className="p-6 text-center text-gray-500">
-                    새로운 알림이 없습니다
+                  <div className="py-12 px-4 text-center">
+                    <div className="text-gray-300 text-4xl mb-2">🔔</div>
+                    <p className="text-gray-500 font-medium">
+                      새로운 알림이 없습니다
+                    </p>
+                    <p className="text-gray-400 text-sm mt-1">
+                      다른 사용자가 당신의 할 일을 응원하면 여기에 표시됩니다
+                    </p>
                   </div>
                 )}
               </div>
+              {notifications.length > 0 && (
+                <div className="p-3 bg-gray-50 text-center border-t border-gray-100">
+                  <button className="text-sm text-gray-500 hover:text-blue-500 font-medium transition-colors duration-200">
+                    모든 알림 보기
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </div>
-        <button className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-200">
-          <Image src={UserSvgSrc} alt="User" width={14} height={14} />
+        <button className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
+          <Image
+            src={UserSvgSrc}
+            alt="User"
+            width={16}
+            height={16}
+            className="opacity-70"
+          />
         </button>
       </div>
     </header>
