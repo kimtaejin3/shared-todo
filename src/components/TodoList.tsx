@@ -109,16 +109,6 @@ export default function TodoList() {
               }
               popperClassName="custom-popper"
               popperPlacement="bottom-start"
-              popperModifiers={
-                [
-                  {
-                    name: "offset",
-                    options: {
-                      offset: [0, 8],
-                    },
-                  },
-                ] as any
-              }
             />
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
               <svg
