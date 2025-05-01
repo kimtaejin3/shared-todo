@@ -85,6 +85,27 @@ export default function TodoDetail({
     left: Math.min(position.left, window.innerWidth - 300),
   };
 
+  // 토스트 애니메이션용 CSS
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const style = document.createElement("style");
+      style.textContent = `
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translate(-50%, -20px); }
+          to { opacity: 1; transform: translate(-50%, 0); }
+        }
+        .animate-fade-in {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
+      `;
+      document.head.appendChild(style);
+
+      return () => {
+        document.head.removeChild(style);
+      };
+    }
+  }, []);
+
   return (
     <>
       {/* 팝오버 */}
@@ -261,16 +282,3 @@ export default function TodoDetail({
     </>
   );
 }
-
-// 토스트 애니메이션용 CSS
-const style = document.createElement("style");
-style.textContent = `
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translate(-50%, -20px); }
-    to { opacity: 1; transform: translate(-50%, 0); }
-  }
-  .animate-fade-in {
-    animation: fadeIn 0.3s ease-out forwards;
-  }
-`;
-document.head.appendChild(style);
