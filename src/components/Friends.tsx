@@ -5,7 +5,8 @@ import Link from "next/link";
 import PreviousSvgSrc from "@/assets/icons/previous.svg";
 import NextSvgSrc from "@/assets/icons/next.svg";
 import MockImageSrc from "@/assets/mock_image.jpeg";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import FriendAddModal from "./FriendAddModal";
 
 // 더미 친구 데이터
 const FRIENDS = [
@@ -22,6 +23,8 @@ const FRIENDS = [
 
 export default function Friends() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [friends, setFriends] = useState(FRIENDS);
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
@@ -41,13 +44,55 @@ export default function Friends() {
     }
   };
 
+  // 친구 추가 핸들러
+  const handleAddFriend = (friendId: string) => {
+    // 실제 구현에서는 API 호출을 통해 친구 요청을 전송합니다.
+    console.log(`친구 추가 요청: ${friendId}`);
+
+    // 현재는 데모를 위한 더미 데이터 추가
+    const newFriend = {
+      id: `new-${Date.now()}`,
+      name: friendId,
+      image: null,
+    };
+
+    setFriends([...friends, newFriend]);
+  };
+
   return (
     <div className="flex flex-col gap-6 w-full">
       <div className="flex justify-between items-center w-full">
         <h3 className="text-lg font-semibold text-gray-700">내 친구들</h3>
-        <span className="bg-white text-gray-600 rounded-xl text-sm px-4 py-2 border border-gray-200 shadow-sm hover:bg-gray-50 transition-colors">
-          투두리스트 확인하러가기
-        </span>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setIsAddModalOpen(true)}
+            className="bg-white text-gray-700 rounded-xl text-sm px-4 py-2 border border-gray-200 shadow-sm hover:bg-gray-50 transition-colors flex items-center gap-1"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 3.33334V12.6667"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M3.33334 8H12.6667"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span>친구 추가</span>
+          </button>
+        </div>
       </div>
       <div className="relative w-full bg-white p-4 rounded-xl border border-gray-100 shadow-sm overflow-hidden">
         <div className="flex items-center gap-5 w-full">
@@ -61,7 +106,7 @@ export default function Friends() {
             ref={scrollContainerRef}
             className="flex items-center gap-4 overflow-x-auto scrollbar-hide py-2 w-full pl-1 pr-2"
           >
-            {FRIENDS.map((friend, index) => (
+            {friends.map((friend, index) => (
               <Link href={`/friends/${friend.id}`} key={friend.id}>
                 <div
                   className={`relative flex-shrink-0 w-14 h-14 rounded-full ${
@@ -99,6 +144,13 @@ export default function Friends() {
           </button>
         </div>
       </div>
+
+      {/* 친구 추가 모달 */}
+      <FriendAddModal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        onAdd={handleAddFriend}
+      />
     </div>
   );
 }
