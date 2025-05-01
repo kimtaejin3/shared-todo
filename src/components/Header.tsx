@@ -101,7 +101,15 @@ export default function Header() {
     <header className="flex items-center justify-between py-4">
       <Link href="/" className="cursor-pointer">
         <h1 className="flex items-center">
-          <Image src={LogoImgSrc} alt="Logo" width={32} height={32} />
+          <div className="bg-black rounded-full w-8 h-8 flex items-center justify-center">
+            <Image
+              src={LogoImgSrc}
+              alt="Logo"
+              width={20}
+              height={20}
+              className="brightness-0 invert"
+            />
+          </div>
           <span className="sr-only">Shared Todo App</span>
         </h1>
       </Link>
