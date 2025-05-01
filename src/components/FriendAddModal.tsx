@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useFadeIn } from "@/hooks";
 
 interface FriendAddModalProps {
   isOpen: boolean;
@@ -16,6 +17,7 @@ export default function FriendAddModal({
   const [friendId, setFriendId] = useState("");
   const modalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const fadeInClass = useFadeIn();
 
   // 모달이 열릴 때 입력란에 포커스
   useEffect(() => {
@@ -61,27 +63,6 @@ export default function FriendAddModal({
     };
   }, [isOpen, onClose]);
 
-  // 애니메이션을 위한 스타일 추가
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const style = document.createElement("style");
-      style.textContent = `
-        @keyframes fadeIn {
-          from { opacity: 0; transform: scale(0.95); }
-          to { opacity: 1; transform: scale(1); }
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.2s ease-out forwards;
-        }
-      `;
-      document.head.appendChild(style);
-
-      return () => {
-        document.head.removeChild(style);
-      };
-    }
-  }, []);
-
   // 폼 제출 처리
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -102,7 +83,7 @@ export default function FriendAddModal({
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div
         ref={modalRef}
-        className="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl animate-fadeIn"
+        className={`bg-white rounded-2xl p-6 w-full max-w-md shadow-xl ${fadeInClass}`}
       >
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-bold text-gray-800">친구 추가하기</h2>

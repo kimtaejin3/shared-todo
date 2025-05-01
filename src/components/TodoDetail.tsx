@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import { useToastFadeIn } from "@/hooks";
 
 interface Cheerleader {
   id: string;
@@ -38,6 +39,7 @@ export default function TodoDetail({
   const [showToast, setShowToast] = useState(false);
   const detailRef = useRef<HTMLDivElement>(null);
   const [showAllCheerleaders, setShowAllCheerleaders] = useState(false);
+  const toastFadeInClass = useToastFadeIn();
 
   // 더미 응원자 데이터 (실제 구현에서는 todo에서 받아와야 함)
   const dummyCheerleaders: Cheerleader[] = [
@@ -84,27 +86,6 @@ export default function TodoDetail({
     top: Math.min(position.top, window.innerHeight - 250),
     left: Math.min(position.left, window.innerWidth - 300),
   };
-
-  // 토스트 애니메이션용 CSS
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const style = document.createElement("style");
-      style.textContent = `
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translate(-50%, -20px); }
-          to { opacity: 1; transform: translate(-50%, 0); }
-        }
-        .animate-fade-in {
-          animation: fadeIn 0.3s ease-out forwards;
-        }
-      `;
-      document.head.appendChild(style);
-
-      return () => {
-        document.head.removeChild(style);
-      };
-    }
-  }, []);
 
   return (
     <>
@@ -269,7 +250,9 @@ export default function TodoDetail({
 
       {/* 토스트 메시지 */}
       {showToast && (
-        <div className="fixed top-16 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-4 py-3 rounded-lg shadow-lg z-50 animate-fade-in flex items-center gap-2.5">
+        <div
+          className={`fixed top-16 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-4 py-3 rounded-lg shadow-lg z-50 flex items-center gap-2.5 ${toastFadeInClass}`}
+        >
           <span className="text-xl">👏</span>
           <div>
             <p className="font-medium">응원했습니다!</p>

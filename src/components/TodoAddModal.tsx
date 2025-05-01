@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale";
 import { format } from "date-fns";
 import CloseSvgSrc from "@/assets/icons/close.svg";
+import { useFadeIn } from "@/hooks";
 
 // DatePicker 커스텀 스타일
 import "./date-picker-custom.css";
@@ -45,6 +46,7 @@ export default function TodoAddModal({
   const [date, setDate] = useState<Date>(selectedDate);
   const modalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const fadeInClass = useFadeIn();
 
   useEffect(() => {
     setDate(selectedDate);
@@ -92,26 +94,6 @@ export default function TodoAddModal({
     };
   }, [isOpen, onClose]);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const style = document.createElement("style");
-      style.textContent = `
-        @keyframes fadeIn {
-          from { opacity: 0; transform: scale(0.95); }
-          to { opacity: 1; transform: scale(1); }
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.2s ease-out forwards;
-        }
-      `;
-      document.head.appendChild(style);
-
-      return () => {
-        document.head.removeChild(style);
-      };
-    }
-  }, []);
-
   const handleAddTag = () => {
     if (tagInput.trim() && !tags.includes(tagInput.trim()) && tags.length < 5) {
       setTags([...tags, tagInput.trim()]);
@@ -158,7 +140,7 @@ export default function TodoAddModal({
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div
         ref={modalRef}
-        className="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl animate-fadeIn"
+        className={`bg-white rounded-2xl p-6 w-full max-w-md shadow-xl ${fadeInClass}`}
       >
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-bold text-gray-800">할 일 추가</h2>
