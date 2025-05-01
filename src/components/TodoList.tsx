@@ -8,6 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale";
 import { format } from "date-fns";
 import TodoDetail from "./TodoDetail";
+import TodoAddModal from "./TodoAddModal";
 
 // DatePicker 커스텀 스타일
 import "./date-picker-custom.css";
@@ -39,6 +40,7 @@ export default function TodoList({
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [selectedTodo, setSelectedTodo] = useState<Todo | null>(null);
   const [detailPosition, setDetailPosition] = useState({ top: 0, left: 0 });
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [todos, setTodos] = useState<Todo[]>([
     {
       id: 1,
@@ -151,6 +153,30 @@ export default function TodoList({
     setSelectedTodo(null);
   };
 
+  // 할일 추가 함수
+  const handleAddTodo = (newTodo: {
+    title: string;
+    tags: string[];
+    color: string;
+    date: Date;
+  }) => {
+    const newId =
+      todos.length > 0 ? Math.max(...todos.map((todo) => todo.id)) + 1 : 1;
+
+    const todoToAdd: Todo = {
+      id: newId,
+      title: newTodo.title,
+      completed: false,
+      tags: newTodo.tags,
+      color: newTodo.color,
+      date: newTodo.date,
+      cheerCount: 0,
+      cheerleaders: [],
+    };
+
+    setTodos([...todos, todoToAdd]);
+  };
+
   return (
     <div className="mt-10">
       <div className="flex justify-between items-center mb-6">
@@ -192,6 +218,37 @@ export default function TodoList({
               : "할 일이 없습니다"}
           </span>
         </div>
+
+        {!isFriendTodo && (
+          <button
+            onClick={() => setIsAddModalOpen(true)}
+            className="bg-white text-sm text-gray-700 px-4 py-2.5 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2 border border-gray-200 shadow-sm font-medium"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 3.33334V12.6667"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M3.33334 8H12.6667"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span>할 일 추가</span>
+          </button>
+        )}
 
         {isFriendTodo && (
           <div className="flex items-center gap-2">
@@ -353,6 +410,14 @@ export default function TodoList({
           isFriendTodo={isFriendTodo}
         />
       )}
+
+      {/* TodoAddModal */}
+      <TodoAddModal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        onAdd={handleAddTodo}
+        selectedDate={selectedDate}
+      />
     </div>
   );
 }
