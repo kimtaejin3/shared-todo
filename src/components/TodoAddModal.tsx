@@ -1,16 +1,13 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import Image from "next/image";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale";
 import { format } from "date-fns";
-import CloseSvgSrc from "@/assets/icons/close.svg";
 import { useFadeIn, useModalEvents } from "@/hooks";
 
-// DatePicker 커스텀 스타일
-import "./date-picker-custom.css";
+import "../app/date-picker-custom.css";
 
 interface TodoAddModalProps {
   isOpen: boolean;

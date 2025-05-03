@@ -12,7 +12,7 @@ import TodoAddModal from "./TodoAddModal";
 import { AddButton } from "@/components/common";
 
 // DatePicker 커스텀 스타일
-import "./date-picker-custom.css";
+import "../app/date-picker-custom.css";
 
 interface Todo {
   id: number;
