@@ -73,6 +73,30 @@ export default function TodoDetail({
     left: Math.min(position.left, window.innerWidth - 300),
   };
 
+  // 화면 너비에 따라 팝오버 위치 및 변환 설정 조정
+  const [transform, setTransform] = useState("translate(-90%, -100%)");
+
+  useEffect(() => {
+    // 화면 크기에 따라 transform 속성 조정
+    const updateTransform = () => {
+      const windowWidth = window.innerWidth;
+
+      if (windowWidth < 640) {
+        setTransform("translate(-10%, -80%)");
+      } else {
+        // 기본 변환
+        setTransform("translate(-90%, -100%)");
+      }
+    };
+
+    updateTransform();
+    window.addEventListener("resize", updateTransform);
+
+    return () => {
+      window.removeEventListener("resize", updateTransform);
+    };
+  }, [position, adjustedPosition.left]);
+
   return (
     <>
       {/* 팝오버 */}
@@ -82,7 +106,7 @@ export default function TodoDetail({
         style={{
           top: `${adjustedPosition.top}px`,
           left: `${adjustedPosition.left}px`,
-          transform: "translate(-90%, -100%)",
+          transform: transform,
         }}
       >
         <div className="p-4 border-b border-gray-100">
