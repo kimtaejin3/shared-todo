@@ -30,6 +30,7 @@
   font-weight: 600 !important;
   color: #333 !important;
   margin-bottom: 10px !important;
+  transform: translateY(-5px) !important;
 }
 
 /* 요일 헤더 */
@@ -118,14 +119,6 @@
   width: 8px !important;
 }
 
-/* 모바일 반응형 */
-@media (max-width: 640px) {
-  .custom-datepicker {
-    width: 280px !important;
-  }
-}
-
-/* z-index 설정 */
 .custom-popper {
   z-index: 10;
 }
