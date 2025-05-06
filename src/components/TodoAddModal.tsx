@@ -22,12 +22,12 @@ interface TodoAddModalProps {
 }
 
 const COLORS = [
-  "#d0eeeb", // 민트
-  "#E2E6FD", // 라벤더
-  "#FFF0EA", // 살구색
-  "#F0EDED", // 연회색
-  "#FFEDD0", // 연주황
-  "#E7F7E2", // 연두색
+  "#0ea5a0", // 더 진한 민트
+  "#6c7ae0", // 더 진한 라벤더
+  "#e07a5f", // 더 진한 살구색
+  "#6b7280", // 더 진한 회색
+  "#e0923e", // 더 진한 주황
+  "#65a30d", // 더 진한 두색
 ];
 
 export default function TodoAddModal({
@@ -213,11 +213,13 @@ export default function TodoAddModal({
                   type="button"
                   className={`w-8 h-8 rounded-full transition-all ${
                     selectedColor === color
-                      ? "ring-2 ring-offset-2 ring-black"
-                      : "hover:ring-2 hover:ring-offset-1 hover:ring-gray-400"
+                      ? "ring-2 ring-offset-2 ring-black shadow-md"
+                      : "hover:ring-2 hover:ring-offset-1 hover:ring-gray-600 border"
                   }`}
                   style={{ backgroundColor: color }}
                   onClick={() => setSelectedColor(color)}
+                  aria-label={`색상 선택: ${color}`}
+                  aria-pressed={selectedColor === color}
                 />
               ))}
             </div>

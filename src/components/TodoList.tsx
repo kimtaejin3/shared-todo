@@ -1,17 +1,16 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import DetailSvgSrc from "@/assets/icons/detail.svg";
 import Image from "next/image";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale";
-import { format, isSameDay } from "date-fns";
+import { format } from "date-fns";
 import TodoDetail from "./TodoDetail";
 import TodoAddModal from "./TodoAddModal";
 import { AddButton } from "@/components/common";
 
-// DatePicker 커스텀 스타일
 import "../app/date-picker-custom.css";
 
 interface Todo {
@@ -48,7 +47,7 @@ export default function TodoList({
       title: "프로젝트 계획 수립하기",
       completed: false,
       tags: ["업무", "중요", "계획"],
-      color: "#d0eeeb",
+      color: "#0ea5a0", // 더 진한 민트색으로 변경하여 대비 개선
       date: new Date(),
       owner: isFriendTodo ? { name: friendName || "김철수" } : undefined,
       cheerCount: 3,
@@ -63,7 +62,7 @@ export default function TodoList({
       title: "주간 회의 준비하기",
       completed: true,
       tags: ["회의", "준비", "발표"],
-      color: "#E2E6FD",
+      color: "#6c7ae0", // 더 진한 라벤더색으로 변경하여 대비 개선
       date: new Date(),
       owner: isFriendTodo ? { name: friendName || "김철수" } : undefined,
       cheerCount: 5,
@@ -80,7 +79,7 @@ export default function TodoList({
       title: "쇼핑몰 디자인 검토",
       completed: false,
       tags: ["디자인", "검토", "피드백"],
-      color: "#FFF0EA",
+      color: "#e07a5f", // 더 진한 살구색으로 변경하여 대비 개선
       date: new Date(new Date().setDate(new Date().getDate() - 1)),
       owner: isFriendTodo ? { name: friendName || "김철수" } : undefined,
       cheerCount: 0,
@@ -91,7 +90,7 @@ export default function TodoList({
       title: "이메일 답장하기",
       completed: false,
       tags: ["이메일", "응답", "소통"],
-      color: "#F0EDED",
+      color: "#6b7280", // 더 진한 회색으로 변경하여 대비 개선
       date: new Date(new Date().setDate(new Date().getDate() + 1)),
       owner: isFriendTodo ? { name: friendName || "김철수" } : undefined,
       cheerCount: 2,
@@ -213,7 +212,7 @@ export default function TodoList({
               </svg>
             </div>
           </div>
-          <span className="text-gray-500 text-sm flex-shrink-0">
+          <span className="text-gray-700 text-sm flex-shrink-0">
             {filteredTodos.length > 0
               ? `${filteredTodos.length}개의 할 일이 있습니다`
               : "할 일이 없습니다"}
@@ -330,15 +329,15 @@ export default function TodoList({
                     {!isFriendTodo &&
                       todo.cheerCount &&
                       todo.cheerCount > 0 && (
-                        <div className="flex items-center bg-gray-50 px-2 py-1 rounded-full border border-gray-100 mr-1">
+                        <div className="flex items-center bg-gray-100 px-2 py-1 rounded-full border border-gray-200 mr-1">
                           <span className="text-sm mr-1">👏</span>
-                          <span className="text-xs text-gray-500">
+                          <span className="text-xs text-gray-700">
                             {todo.cheerCount}
                           </span>
                         </div>
                       )}
                     <button
-                      className="text-gray-400 p-1 rounded-full hover:bg-gray-100 hover:text-blue-500 transition-all duration-200"
+                      className="text-gray-600 p-1 rounded-full hover:bg-gray-100 hover:text-blue-500 transition-all duration-200"
                       onClick={(e) => handleDetailClick(todo, e)}
                     >
                       <Image
@@ -365,11 +364,11 @@ export default function TodoList({
           ))
         ) : (
           <div className="text-center py-16 bg-gray-50 rounded-xl border border-dashed border-gray-200">
-            <div className="text-gray-400 mb-2">📅</div>
-            <div className="text-gray-500 font-medium">
+            <div className="text-gray-600 mb-2">📅</div>
+            <div className="text-gray-700 font-medium">
               이 날짜에 할 일이 없습니다
             </div>
-            <div className="text-gray-400 text-sm mt-1">
+            <div className="text-gray-600 text-sm mt-1">
               {isFriendTodo
                 ? "다른 날짜를 선택해보세요"
                 : "새로운 할 일을 추가해보세요"}
