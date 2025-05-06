@@ -21,7 +21,7 @@ export default function DatePicker({
         onChange={(date: Date | null) => date && setSelectedDate(date)}
         dateFormat="yyyy년 MM월 dd일"
         locale={ko}
-        className={`bg-white border border-gray-200 p-3 rounded-xl shadow-sm text-gray-700 font-medium cursor-pointer hover:border-blue-300 transition-all focus:outline-none focus:ring-2 focus:ring-blue-200 w-full ${className}`}
+        className="bg-white border border-gray-200 p-3 rounded-xl shadow-sm text-gray-700 font-medium cursor-pointer hover:border-blue-300 transition-all focus:outline-none focus:ring-2 focus:ring-blue-200 w-full"
         showPopperArrow={false}
         calendarClassName="custom-datepicker"
         dayClassName={(date) =>
