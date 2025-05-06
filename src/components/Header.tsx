@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import LogoImgSrc from "@/assets/logo.png";
+import LogoImgSrc from "@/assets/images/logo.png";
 import NotificationSvgSrc from "@/assets/icons/notification.svg";
 import UserSvgSrc from "@/assets/icons/user.svg";
 import { useState, useRef, useEffect } from "react";

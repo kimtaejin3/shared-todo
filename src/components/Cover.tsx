@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import CoverExampleSrc from "@/assets/cover-example2.jpeg";
+import CoverExampleSrc from "@/assets/images/cover-example2.jpeg";
 import { useState, useEffect } from "react";
 
 // 날씨 아이콘을 위한 임포트

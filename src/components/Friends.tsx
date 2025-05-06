@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import PreviousSvgSrc from "@/assets/icons/previous.svg";
 import NextSvgSrc from "@/assets/icons/next.svg";
-import MockImageSrc from "@/assets/mock_image.jpeg";
+import MockImageSrc from "@/assets/images/mock_image.jpeg";
 import { useRef, useState } from "react";
 import FriendAddModal from "./FriendAddModal";
 import { AddButton } from "@/components/common";
