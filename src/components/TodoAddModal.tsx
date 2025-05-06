@@ -101,7 +101,7 @@ export default function TodoAddModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 px-4">
       <div
         ref={modalRef}
         className={`bg-white rounded-2xl p-6 w-full max-w-md shadow-xl ${fadeInClass}`}
