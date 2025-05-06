@@ -7,7 +7,7 @@ import { ko } from "date-fns/locale";
 import { format } from "date-fns";
 import { useFadeIn, useModalEvents } from "@/hooks";
 
-import "../app/date-picker-custom.css";
+import "@/styles/date-picker-custom.css";
 
 interface TodoAddModalProps {
   isOpen: boolean;
