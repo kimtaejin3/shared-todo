@@ -170,7 +170,7 @@ export default function Cover() {
 
       {/* 시간/날짜 오버레이 */}
       <div className="absolute inset-0 flex flex-col justify-center px-8 text-white">
-        <div className="flex justify-between items-end w-full">
+        <div className="flex justify-between items-end w-full max-[490px]:flex-col max-[490px]:items-start gap-4">
           <div>
             <div className="flex items-end gap-3 mb-1">
               <div className="text-4xl font-bold drop-shadow-md">

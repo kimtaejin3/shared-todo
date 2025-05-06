@@ -179,8 +179,8 @@ export default function TodoList({
 
   return (
     <div className="mt-10">
-      <div className="flex justify-between items-center mb-6">
-        <div className="flex items-center gap-3">
+      <div className="flex justify-between items-center mb-6 max-[490px]:flex-col max-[490px]:items-start gap-4">
+        <div className="flex items-center gap-3 ">
           <div className="relative w-full max-w-xs">
             <DatePicker
               selected={selectedDate}
