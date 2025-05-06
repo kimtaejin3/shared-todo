@@ -1,8 +1,8 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import Header from "@/components/Header";
-import TodoList from "@/components/TodoList";
+import Header from "@/components/common/Header";
+import TodoList from "@/components/todo/TodoList";
 import { useEffect, useState } from "react";
 
 // 더미 친구 데이터

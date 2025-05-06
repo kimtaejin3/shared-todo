@@ -1,7 +1,7 @@
-import Cover from "@/components/Cover";
-import Friends from "@/components/Friends";
-import Header from "@/components/Header";
-import TodoList from "@/components/TodoList";
+import Cover from "@/components/common/DayView";
+import Friends from "@/components/friend/Friends";
+import Header from "@/components/common/Header";
+import TodoList from "@/components/todo/TodoList";
 
 export default function Home() {
   return (

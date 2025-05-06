@@ -8,7 +8,7 @@ import TodoAddModal from "./TodoAddModal";
 import { AddButton } from "@/components/common";
 
 import "@/styles/date-picker-custom.css";
-import DatePicker from "./common/DatePicker";
+import DatePicker from "../common/DatePicker";
 
 interface Todo {
   id: number;
