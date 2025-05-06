@@ -9,12 +9,9 @@ export default function ProfilePage() {
   const router = useRouter();
   const [nickname, setNickname] = useState("나내일");
   const [profileImage, setProfileImage] = useState<string | null>(null);
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("naewis1516@dilution.org");
   const [userId, setUserId] = useState("AJELDN920E");
   const [isNicknameError, setIsNicknameError] = useState(false);
-  const [isPasswordError, setIsPasswordError] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // 닉네임 변경 처리
@@ -22,22 +19,6 @@ export default function ProfilePage() {
     const value = e.target.value;
     setNickname(value);
     setIsNicknameError(value.trim() === "");
-  };
-
-  // 비밀번호 변경 처리
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-    if (confirmPassword) {
-      setIsPasswordError(e.target.value !== confirmPassword);
-    }
-  };
-
-  // 비밀번호 확인 처리
-  const handleConfirmPasswordChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setConfirmPassword(e.target.value);
-    setIsPasswordError(password !== e.target.value);
   };
 
   // 프로필 이미지 변경 처리
@@ -66,13 +47,6 @@ export default function ProfilePage() {
       return;
     }
 
-    if (password && password !== confirmPassword) {
-      setIsPasswordError(true);
-      return;
-    }
-
-    // 실제 구현에서는 여기서 API 호출을 통해 프로필 정보를 저장합니다.
-    alert("프로필이 저장되었습니다.");
     router.push("/");
   };
 
@@ -167,59 +141,6 @@ export default function ProfilePage() {
               </p>
             )}
           </div>
-
-          <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              비밀번호
-            </label>
-            <div className="flex items-stretch">
-              <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={handlePasswordChange}
-                className={`flex-1 border ${
-                  isPasswordError ? "border-red-300" : "border-gray-300"
-                } rounded-l-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-200`}
-                placeholder="●●●●●●●●●●●●"
-              />
-              <button
-                type="button"
-                className="bg-gray-800 text-white px-3 py-2 rounded-r-lg text-sm hover:bg-gray-700 transition-colors"
-              >
-                수정
-              </button>
-            </div>
-          </div>
-
-          {password && (
-            <div>
-              <label
-                htmlFor="confirmPassword"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                비밀번호 확인
-              </label>
-              <input
-                type="password"
-                id="confirmPassword"
-                value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
-                className={`w-full border ${
-                  isPasswordError ? "border-red-300" : "border-gray-300"
-                } rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-200`}
-                placeholder="비밀번호 확인"
-              />
-              {isPasswordError && (
-                <p className="text-red-500 text-xs mt-1">
-                  비밀번호가 일치하지 않습니다.
-                </p>
-              )}
-            </div>
-          )}
 
           <div>
             <label
