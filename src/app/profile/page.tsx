@@ -4,6 +4,8 @@ import { useState, useRef, ChangeEvent } from "react";
 import Header from "@/components/common/Header";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { IconInput, ButtonInput } from "@/components/common/inputs";
+import { UserIcon, EmailIcon, IdIcon } from "@/components/common/icons/InputIcons";
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -109,69 +111,32 @@ export default function ProfilePage() {
         </div>
 
         <form onSubmit={handleSave} className="w-full max-w-sm space-y-4">
-          <div>
-            <label
-              htmlFor="nickname"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              닉네임
-            </label>
-            <div className="flex items-stretch">
-              <input
-                type="text"
-                id="nickname"
-                value={nickname}
-                onChange={handleNicknameChange}
-                className={`flex-1 border ${
-                  isNicknameError ? "border-red-300" : "border-gray-300"
-                } rounded-l-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-200`}
-                placeholder="닉네임 입력"
-              />
-              <button
-                type="button"
-                className="bg-gray-800 text-white px-3 py-2 rounded-r-lg text-sm hover:bg-gray-700 transition-colors"
-              >
-                수정
-              </button>
-            </div>
-            {isNicknameError && (
-              <p className="text-red-500 text-xs mt-1">
-                올바른 닉네임이 아닙니다.
-              </p>
-            )}
-          </div>
+          <ButtonInput
+            id="nickname"
+            label="닉네임"
+            value={nickname}
+            onChange={handleNicknameChange}
+            placeholder="닉네임 입력"
+            error={isNicknameError ? "올바른 닉네임이 아닙니다." : ""}
+            buttonText="수정"
+            onButtonClick={() => console.log("닉네임 수정 버튼 클릭")}
+          />
 
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              이메일
-            </label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              disabled
-              className="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50 text-gray-500 text-sm"
-            />
-          </div>
+          <IconInput
+            id="email"
+            label="이메일"
+            value={email}
+            disabled
+            icon={<EmailIcon />}
+          />
 
-          <div>
-            <label
-              htmlFor="userId"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              내 ID
-            </label>
-            <input
-              type="text"
-              id="userId"
-              value={userId}
-              disabled
-              className="w-full border border-gray-200 rounded-lg px-3 py-2 bg-gray-50 text-gray-500 text-sm"
-            />
-          </div>
+          <IconInput
+            id="userId"
+            label="내 ID"
+            value={userId}
+            disabled
+            icon={<IdIcon />}
+          />
 
           <div className="pt-4 flex flex-col gap-3">
             <button

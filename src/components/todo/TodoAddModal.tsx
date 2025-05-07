@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import DatePicker from "@/components/common/DatePicker";
-import Input from "@/components/common/Input";
+import { Input } from "@/components/common/inputs";
 import { useFadeIn, useModalEvents } from "@/hooks";
 
 import "@/styles/date-picker-custom.css";
