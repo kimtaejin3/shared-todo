@@ -207,21 +207,13 @@ export default function TodoAddModal({
               <input
                 type="text"
                 id="tags"
-                className="flex-1 border border-gray-300 rounded-l-lg p-3 focus:outline-none focus:border-none focus:ring-2 focus:ring-black focus:border-transparent"
+                className="flex-1 border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-none focus:ring-2 focus:ring-black focus:border-transparent"
                 placeholder="태그를 입력하고 엔터 또는 추가 버튼을 누르세요"
                 value={tagInput}
                 onChange={(e) => setTagInput(e.target.value)}
                 onKeyDown={handleTagKeyDown}
                 disabled={tags.length >= 5}
               />
-              <button
-                type="button"
-                className="bg-gray-100 text-gray-700 px-4 rounded-r-lg hover:bg-gray-200 transition-colors"
-                onClick={handleAddTag}
-                disabled={tags.length >= 5 || !tagInput.trim()}
-              >
-                추가
-              </button>
             </div>
 
             {/* 태그 목록 */}

@@ -28,6 +28,8 @@ interface TodoDetailProps {
   onClose: () => void;
   position: { top: number; left: number };
   isFriendTodo?: boolean;
+  onEdit?: (todoId: number) => void;
+  onDelete?: (todoId: number) => void;
 }
 
 export default function TodoDetail({
@@ -35,6 +37,8 @@ export default function TodoDetail({
   onClose,
   position,
   isFriendTodo = false,
+  onEdit,
+  onDelete,
 }: TodoDetailProps) {
   const [showToast, setShowToast] = useState(false);
   const detailRef = useRef<HTMLDivElement>(null);
@@ -62,6 +66,22 @@ export default function TodoDetail({
       setShowToast(false);
       onClose();
     }, 2000);
+  };
+
+  // 수정 버튼 클릭 핸들러
+  const handleEdit = () => {
+    if (onEdit) {
+      onEdit(todo.id);
+      onClose();
+    }
+  };
+
+  // 삭제 버튼 클릭 핸들러
+  const handleDelete = () => {
+    if (onDelete) {
+      onDelete(todo.id);
+      onClose();
+    }
   };
 
   // 팝오버 외부 클릭 감지
@@ -245,7 +265,7 @@ export default function TodoDetail({
           )}
         </div>
 
-        {isFriendTodo && (
+        {isFriendTodo ? (
           <div className="p-3 bg-gray-50">
             <button
               onClick={handleCheer}
@@ -254,6 +274,31 @@ export default function TodoDetail({
               <span className="text-lg">👏</span>
               응원하기
             </button>
+          </div>
+        ) : (
+          <div className="p-3 bg-gray-50">
+            <div className="flex gap-2">
+              <button
+                onClick={handleEdit}
+                className="flex-1 py-2 bg-gray-800 hover:bg-gray-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+                수정
+              </button>
+              <button
+                onClick={handleDelete}
+                className="flex-1 py-2 bg-gray-800 hover:bg-gray-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+                삭제
+              </button>
+            </div>
           </div>
         )}
       </div>
