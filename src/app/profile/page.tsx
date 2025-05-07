@@ -106,7 +106,6 @@ export default function ProfilePage() {
 
         <div className="text-center mb-5">
           <h2 className="text-lg font-semibold text-gray-800">{nickname}</h2>
-          <p className="text-sm text-gray-500">{email}</p>
         </div>
 
         <form onSubmit={handleSave} className="w-full max-w-sm space-y-4">
