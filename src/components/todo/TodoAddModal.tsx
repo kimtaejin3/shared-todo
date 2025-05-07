@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import DatePicker from "@/components/common/DatePicker";
+import Input from "@/components/common/Input";
 import { useFadeIn, useModalEvents } from "@/hooks";
 
 import "@/styles/date-picker-custom.css";
@@ -136,25 +137,16 @@ export default function TodoAddModal({
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* 제목 입력 */}
-          <div>
-            <label
-              htmlFor="title"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              제목
-            </label>
-            <input
-              type="text"
-              id="title"
-              ref={inputRef}
-              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
-              placeholder="할 일을 입력하세요"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
-              maxLength={50}
-            />
-          </div>
+          <Input
+            id="title"
+            label="제목"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="할 일을 입력하세요"
+            required
+            maxLength={50}
+            inputRef={inputRef}
+          />
 
           {/* 날짜 선택 */}
           <div>
@@ -204,15 +196,15 @@ export default function TodoAddModal({
               태그 ({tags.length}/5)
             </label>
             <div className="flex">
-              <input
-                type="text"
+              <Input
                 id="tags"
-                className="flex-1 border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-none focus:ring-2 focus:ring-black focus:border-transparent"
-                placeholder="태그를 입력하고 엔터 또는 추가 버튼을 누르세요"
+                label=""
                 value={tagInput}
                 onChange={(e) => setTagInput(e.target.value)}
+                placeholder="태그를 입력하고 엔터 또는 추가 버튼을 누르세요"
                 onKeyDown={handleTagKeyDown}
                 disabled={tags.length >= 5}
+                className="flex-1"
               />
             </div>
 

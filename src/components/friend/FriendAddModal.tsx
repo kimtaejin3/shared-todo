@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Input from "@/components/common/Input";
 import { useFadeIn, useModalEvents } from "@/hooks";
 
 interface FriendAddModalProps {
@@ -83,28 +84,16 @@ export default function FriendAddModal({
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label
-              htmlFor="friendId"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              친구 ID
-            </label>
-            <input
-              type="text"
-              id="friendId"
-              ref={inputRef}
-              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
-              placeholder="추가할 친구의 ID를 입력하세요"
-              value={friendId}
-              onChange={(e) => setFriendId(e.target.value)}
-              required
-            />
-            <p className="mt-2 text-sm text-gray-500">
-              친구의 ID를 입력하면 친구 요청이 전송됩니다. 상대방이 수락하면
-              친구가 됩니다.
-            </p>
-          </div>
+          <Input
+            id="friendId"
+            label="친구 ID"
+            value={friendId}
+            onChange={(e) => setFriendId(e.target.value)}
+            placeholder="추가할 친구의 ID를 입력하세요"
+            required
+            inputRef={inputRef}
+            helpText="친구의 ID를 입력하면 친구 요청이 전송됩니다. 상대방이 수락하면 친구가 됩니다."
+          />
 
           <div className="flex justify-end space-x-3 pt-4">
             <button
