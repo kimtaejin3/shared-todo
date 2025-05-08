@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import DatePicker from "@/components/common/DatePicker";
+import DatePicker from "@/components/common/ui/DatePicker";
 import Input from "@/components/common/inputs/Input";
 import { useFadeIn } from "@/hooks/useAnimation";
 import { useModalEvents } from "@/hooks/useModalEvents";

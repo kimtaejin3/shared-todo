@@ -1,12 +1,16 @@
 "use client";
 
 import { useState, useRef, ChangeEvent } from "react";
-import Header from "@/components/common/Header";
+import Header from "@/components/common/ui/Header";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import IconInput from "@/components/common/inputs/IconInput";
 import ButtonInput from "@/components/common/inputs/ButtonInput";
-import { UserIcon, EmailIcon, IdIcon } from "@/components/common/icons/InputIcons";
+import {
+  UserIcon,
+  EmailIcon,
+  IdIcon,
+} from "@/components/common/icons/InputIcons";
 
 export default function ProfilePage() {
   const router = useRouter();
