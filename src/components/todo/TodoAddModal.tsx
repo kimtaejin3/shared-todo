@@ -196,18 +196,15 @@ export default function TodoAddModal({
             >
               태그 ({tags.length}/5)
             </label>
-            <div className="flex">
-              <Input
-                id="tags"
-                label=""
-                value={tagInput}
-                onChange={(e) => setTagInput(e.target.value)}
-                placeholder="태그를 입력하고 엔터 또는 추가 버튼을 누르세요"
-                onKeyDown={handleTagKeyDown}
-                disabled={tags.length >= 5}
-                className="flex-1"
-              />
-            </div>
+            <Input
+              id="tags"
+              label=""
+              value={tagInput}
+              onChange={(e) => setTagInput(e.target.value)}
+              placeholder="태그를 입력하고 엔터 또는 추가 버튼을 누르세요"
+              onKeyDown={handleTagKeyDown}
+              disabled={tags.length >= 5}
+            />
 
             {/* 태그 목록 */}
             {tags.length > 0 && (
