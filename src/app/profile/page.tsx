@@ -4,8 +4,7 @@ import { useState, useRef, ChangeEvent } from "react";
 import Header from "@/components/common/ui/Header";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import IconInput from "@/components/common/inputs/IconInput";
-import ButtonInput from "@/components/common/inputs/ButtonInput";
+import Input from "@/components/common/inputs/Input";
 import InputUserIcon from "@/components/common/icons/InputUserIcon";
 import EmailIcon from "@/components/common/icons/EmailIcon";
 import IdIcon from "@/components/common/icons/IdIcon";
@@ -115,31 +114,29 @@ export default function ProfilePage() {
         </div>
 
         <form onSubmit={handleSave} className="w-full max-w-sm space-y-4">
-          <ButtonInput
+          <Input
             id="nickname"
             label="닉네임"
             value={nickname}
             onChange={handleNicknameChange}
             placeholder="닉네임 입력"
             error={isNicknameError ? "올바른 닉네임이 아닙니다." : ""}
-            buttonText="수정"
-            onButtonClick={() => console.log("닉네임 수정 버튼 클릭")}
           />
 
-          <IconInput
+          <Input
             id="email"
             label="이메일"
             value={email}
             disabled
-            icon={<EmailIcon />}
+            leftIcon={<EmailIcon />}
           />
 
-          <IconInput
+          <Input
             id="userId"
             label="내 ID"
             value={userId}
             disabled
-            icon={<IdIcon />}
+            leftIcon={<IdIcon />}
           />
 
           <div className="pt-4 flex flex-col gap-3">

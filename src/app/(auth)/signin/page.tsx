@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import logo from "@/assets/images/logo.png";
 import Link from "next/link";
-import IconInput from "@/components/common/inputs/IconInput";
+import Input from "@/components/common/inputs/Input";
 import InputUserIcon from "@/components/common/icons/InputUserIcon";
 import LockIcon from "@/components/common/icons/LockIcon";
 import Button from "@/components/common/buttons/Button";
@@ -48,25 +48,25 @@ export default function Page() {
         </h1>
 
         <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
-          <IconInput
+          <Input
             id="id"
             label="아이디"
             value={id}
             onChange={(e) => setId(e.target.value)}
             placeholder="아이디를 입력하세요"
-            icon={<InputUserIcon />}
+            leftIcon={<InputUserIcon />}
             error={errors.id}
             required
           />
 
-          <IconInput
+          <Input
             id="password"
             label="비밀번호"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="비밀번호를 입력하세요"
             type="password"
-            icon={<LockIcon />}
+            leftIcon={<LockIcon />}
             error={errors.password}
             required
           />
