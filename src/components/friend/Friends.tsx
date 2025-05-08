@@ -7,7 +7,7 @@ import NextSvgSrc from "@/assets/icons/next.svg";
 import MockImageSrc from "@/assets/images/mock_image.jpeg";
 import { useRef, useState } from "react";
 import FriendAddModal from "./FriendAddModal";
-import AddButton from "@/components/common/AddButton";
+import AddButton from "@/components/common/buttons/AddButton";
 
 // 더미 친구 데이터
 const FRIENDS = [
