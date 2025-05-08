@@ -4,13 +4,13 @@ import { useState } from "react";
 import Image from "next/image";
 import logo from "@/assets/images/logo.png";
 import Link from "next/link";
-import Input from "@/components/common/inputs/Input";
-import InputUserIcon from "@/components/common/icons/InputUserIcon";
-import LockIcon from "@/components/common/icons/LockIcon";
-import ShieldIcon from "@/components/common/icons/ShieldIcon";
-import GroupIcon from "@/components/common/icons/GroupIcon";
-import UserIcon from "@/components/common/icons/UserIcon";
-import Button from "@/components/common/buttons/Button";
+import Input from "@/components/shared/ui/Input";
+import InputUserIcon from "@/components/shared/icons/InputUserIcon";
+import LockIcon from "@/components/shared/icons/LockIcon";
+import ShieldIcon from "@/components/shared/icons/ShieldIcon";
+import GroupIcon from "@/components/shared/icons/GroupIcon";
+import UserIcon from "@/components/shared/icons/UserIcon";
+import Button from "@/components/shared/ui/buttons/Button";
 
 export default function Page() {
   const [id, setId] = useState("");

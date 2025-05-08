@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import LogoImgSrc from "@/assets/images/logo.png";
-import NotificationIcon from "@/components/common/icons/NotificationIcon";
-import UserIcon from "@/components/common/icons/UserIcon";
+import NotificationIcon from "@/components/shared/icons/NotificationIcon";
+import UserIcon from "@/components/shared/icons/UserIcon";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 

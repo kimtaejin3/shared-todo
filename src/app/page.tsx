@@ -1,6 +1,6 @@
-import Cover from "@/components/common/ui/DayView";
+import Cover from "@/components/shared/DayView";
 import Friends from "@/components/friend/Friends";
-import Header from "@/components/common/ui/Header";
+import Header from "@/components/shared/Header";
 import TodoList from "@/components/todo/TodoList";
 
 export default function Home() {

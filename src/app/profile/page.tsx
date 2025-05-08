@@ -1,14 +1,14 @@
 "use client";
 
 import { useState, useRef, ChangeEvent } from "react";
-import Header from "@/components/common/ui/Header";
+import Header from "@/components/shared/Header";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import Input from "@/components/common/inputs/Input";
-import InputUserIcon from "@/components/common/icons/InputUserIcon";
-import EmailIcon from "@/components/common/icons/EmailIcon";
-import IdIcon from "@/components/common/icons/IdIcon";
-import Button from "@/components/common/buttons/Button";
+import Input from "@/components/shared/ui/Input";
+import InputUserIcon from "@/components/shared/icons/InputUserIcon";
+import EmailIcon from "@/components/shared/icons/EmailIcon";
+import IdIcon from "@/components/shared/icons/IdIcon";
+import Button from "@/components/shared/ui/buttons/Button";
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -140,12 +140,7 @@ export default function ProfilePage() {
           />
 
           <div className="pt-4 flex flex-col gap-3">
-            <Button
-              type="submit"
-              variant="primary"
-              fullWidth
-              size="lg"
-            >
+            <Button type="submit" variant="primary" fullWidth size="lg">
               저장하기
             </Button>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import Header from "@/components/common/ui/Header";
+import Header from "@/components/shared/Header";
 import TodoList from "@/components/todo/TodoList";
 import { useEffect, useState } from "react";
 

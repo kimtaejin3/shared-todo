@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import PreviousIcon from "@/components/common/icons/PreviousIcon";
-import NextIcon from "@/components/common/icons/NextIcon";
+import PreviousIcon from "@/components/shared/icons/PreviousIcon";
+import NextIcon from "@/components/shared/icons/NextIcon";
 import MockImageSrc from "@/assets/images/mock_image.jpeg";
 import { useRef, useState } from "react";
 import FriendAddModal from "./FriendAddModal";
-import AddButton from "@/components/common/buttons/AddButton";
+import AddButton from "@/components/shared/ui/buttons/AddButton";
 
 // 더미 친구 데이터
 const FRIENDS = [

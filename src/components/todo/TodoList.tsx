@@ -1,16 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import DetailIcon from "@/components/common/icons/DetailIcon";
-import CheckIcon from "@/components/common/icons/CheckIcon";
-import ClockIcon from "@/components/common/icons/ClockIcon";
+import DetailIcon from "@/components/shared/icons/DetailIcon";
+import CheckIcon from "@/components/shared/icons/CheckIcon";
+import ClockIcon from "@/components/shared/icons/ClockIcon";
 import Image from "next/image";
 import TodoDetail from "./TodoDetail";
 import TodoAddModal from "./TodoAddModal";
-import AddButton from "@/components/common/buttons/AddButton";
+import AddButton from "@/components/shared/ui/buttons/AddButton";
 
 import "@/styles/date-picker-custom.css";
-import DatePicker from "../common/ui/DatePicker";
+import DatePicker from "../shared/DatePicker";
 
 interface Todo {
   id: number;
@@ -230,9 +230,7 @@ export default function TodoList({
                   }}
                   onClick={() => toggleComplete(todo.id)}
                 >
-                  {todo.completed && (
-                    <CheckIcon />
-                  )}
+                  {todo.completed && <CheckIcon />}
                 </div>
               )}
 
@@ -244,11 +242,7 @@ export default function TodoList({
                       : "bg-gray-100 text-gray-500"
                   }`}
                 >
-                  {todo.completed ? (
-                    <CheckIcon />
-                  ) : (
-                    <ClockIcon />
-                  )}
+                  {todo.completed ? <CheckIcon /> : <ClockIcon />}
                 </div>
               )}
 

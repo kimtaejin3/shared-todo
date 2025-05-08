@@ -4,25 +4,25 @@ import { useState } from "react";
 import Image from "next/image";
 import logo from "@/assets/images/logo.png";
 import Link from "next/link";
-import Input from "@/components/common/inputs/Input";
-import InputUserIcon from "@/components/common/icons/InputUserIcon";
-import LockIcon from "@/components/common/icons/LockIcon";
-import Button from "@/components/common/buttons/Button";
+import Input from "@/components/shared/ui/Input";
+import InputUserIcon from "@/components/shared/icons/InputUserIcon";
+import LockIcon from "@/components/shared/icons/LockIcon";
+import Button from "@/components/shared/ui/buttons/Button";
 
 export default function Page() {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState<{[key: string]: string}>({});
-  
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newErrors: {[key: string]: string} = {};
-    
+    const newErrors: { [key: string]: string } = {};
+
     if (!id) newErrors.id = "아이디를 입력해주세요";
     if (!password) newErrors.password = "비밀번호를 입력해주세요";
-    
+
     setErrors(newErrors);
-    
+
     if (Object.keys(newErrors).length === 0) {
       // 실제 로그인 처리 로직
       console.log("로그인 처리", { id, password });

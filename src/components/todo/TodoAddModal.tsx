@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import DatePicker from "@/components/common/ui/DatePicker";
-import Input from "@/components/common/inputs/Input";
-import CloseIcon from "@/components/common/icons/CloseIcon";
+import DatePicker from "@/components/shared/DatePicker";
+import Input from "@/components/shared/ui/Input";
+import CloseIcon from "@/components/shared/icons/CloseIcon";
 import { useFadeIn } from "@/hooks/useAnimation";
 import { useModalEvents } from "@/hooks/useModalEvents";
-import Button from "@/components/common/buttons/Button";
+import Button from "@/components/shared/ui/buttons/Button";
 
 import "@/styles/date-picker-custom.css";
 
@@ -211,18 +211,10 @@ export default function TodoAddModal({
 
           {/* 버튼 영역 */}
           <div className="flex justify-end space-x-3 pt-4">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={onClose}
-            >
+            <Button type="button" variant="outline" onClick={onClose}>
               취소
             </Button>
-            <Button
-              type="submit"
-              variant="primary"
-              disabled={!title.trim()}
-            >
+            <Button type="submit" variant="primary" disabled={!title.trim()}>
               추가
             </Button>
           </div>
