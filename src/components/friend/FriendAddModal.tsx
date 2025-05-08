@@ -4,6 +4,8 @@ import { useState, useRef, useEffect } from "react";
 import Input from "@/components/common/inputs/Input";
 import { useFadeIn } from "@/hooks/useAnimation";
 import { useModalEvents } from "@/hooks/useModalEvents";
+import CloseIcon from "@/components/common/icons/CloseIcon";
+import Button from "../common/buttons/Button";
 
 interface FriendAddModalProps {
   isOpen: boolean;
@@ -59,28 +61,7 @@ export default function FriendAddModal({
             onClick={onClose}
             className="p-1 rounded-full hover:bg-gray-100 transition-colors"
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M18 6L6 18"
-                stroke="#9CA3AF"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M6 6L18 18"
-                stroke="#9CA3AF"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <CloseIcon />
           </button>
         </div>
 
@@ -97,20 +78,24 @@ export default function FriendAddModal({
           />
 
           <div className="flex justify-end space-x-3 pt-4">
-            <button
+            <Button
               type="button"
-              className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+              variant="outline"
+              fullWidth
+              size="lg"
               onClick={onClose}
             >
               취소
-            </button>
-            <button
+            </Button>
+            <Button
               type="submit"
-              className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+              variant="primary"
+              fullWidth
+              size="lg"
               disabled={!friendId.trim()}
             >
               요청 보내기
-            </button>
+            </Button>
           </div>
         </form>
       </div>

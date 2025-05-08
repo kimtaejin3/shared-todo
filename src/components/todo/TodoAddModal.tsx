@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import DatePicker from "@/components/common/ui/DatePicker";
 import Input from "@/components/common/inputs/Input";
+import CloseIcon from "@/components/common/icons/CloseIcon";
 import { useFadeIn } from "@/hooks/useAnimation";
 import { useModalEvents } from "@/hooks/useModalEvents";
 import Button from "@/components/common/buttons/Button";
@@ -112,28 +113,7 @@ export default function TodoAddModal({
             onClick={onClose}
             className="p-1 rounded-full hover:bg-gray-100 transition-colors"
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M18 6L6 18"
-                stroke="#9CA3AF"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M6 6L18 18"
-                stroke="#9CA3AF"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <CloseIcon />
           </button>
         </div>
 
