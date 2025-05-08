@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import logo from "@/assets/images/logo.png";
 import Link from "next/link";
-import { IconInput } from "@/components/common/inputs";
+import IconInput from "@/components/common/inputs/IconInput";
 import { UserIcon, LockIcon, ShieldIcon, GroupIcon } from "@/components/common/icons/InputIcons";
 
 export default function Page() {

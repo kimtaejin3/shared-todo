@@ -5,7 +5,7 @@ import DetailSvgSrc from "@/assets/icons/detail.svg";
 import Image from "next/image";
 import TodoDetail from "./TodoDetail";
 import TodoAddModal from "./TodoAddModal";
-import { AddButton } from "@/components/common";
+import AddButton from "@/components/common/AddButton";
 
 import "@/styles/date-picker-custom.css";
 import DatePicker from "../common/DatePicker";

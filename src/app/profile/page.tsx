@@ -4,7 +4,8 @@ import { useState, useRef, ChangeEvent } from "react";
 import Header from "@/components/common/Header";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { IconInput, ButtonInput } from "@/components/common/inputs";
+import IconInput from "@/components/common/inputs/IconInput";
+import ButtonInput from "@/components/common/inputs/ButtonInput";
 import { UserIcon, EmailIcon, IdIcon } from "@/components/common/icons/InputIcons";
 
 export default function ProfilePage() {

@@ -2,7 +2,8 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { useToastFadeIn, useOutsideClick } from "@/hooks";
+import { useToastFadeIn } from "@/hooks/useAnimation";
+import { useOutsideClick } from "@/hooks/useModalEvents";
 
 interface Cheerleader {
   id: string;

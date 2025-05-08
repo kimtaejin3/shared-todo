@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Input } from "@/components/common/inputs";
-import { useFadeIn, useModalEvents } from "@/hooks";
+import Input from "@/components/common/inputs/Input";
+import { useFadeIn } from "@/hooks/useAnimation";
+import { useModalEvents } from "@/hooks/useModalEvents";
 
 interface FriendAddModalProps {
   isOpen: boolean;
