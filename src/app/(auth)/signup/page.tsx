@@ -10,6 +10,7 @@ import LockIcon from "@/components/common/icons/LockIcon";
 import ShieldIcon from "@/components/common/icons/ShieldIcon";
 import GroupIcon from "@/components/common/icons/GroupIcon";
 import UserIcon from "@/components/common/icons/UserIcon";
+import Button from "@/components/common/buttons/Button";
 
 export default function Page() {
   const [id, setId] = useState("");
@@ -103,12 +104,15 @@ export default function Page() {
             required
           />
 
-          <button
-            className="block w-full bg-black text-white rounded-lg p-2.5 font-medium hover:bg-gray-800 transition duration-200 mt-2"
+          <Button
             type="submit"
+            variant="primary"
+            fullWidth
+            size="lg"
+            className="mt-2"
           >
             회원가입
-          </button>
+          </Button>
         </form>
 
         <div className="flex gap-2 items-center justify-center mt-6">

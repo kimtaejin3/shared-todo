@@ -9,6 +9,7 @@ import ButtonInput from "@/components/common/inputs/ButtonInput";
 import InputUserIcon from "@/components/common/icons/InputUserIcon";
 import EmailIcon from "@/components/common/icons/EmailIcon";
 import IdIcon from "@/components/common/icons/IdIcon";
+import Button from "@/components/common/buttons/Button";
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -142,20 +143,24 @@ export default function ProfilePage() {
           />
 
           <div className="pt-4 flex flex-col gap-3">
-            <button
+            <Button
               type="submit"
-              className="w-full bg-gray-800 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-700 transition-colors duration-200"
+              variant="primary"
+              fullWidth
+              size="lg"
             >
               저장하기
-            </button>
+            </Button>
 
-            <button
+            <Button
               type="button"
+              variant="outline"
+              fullWidth
+              size="lg"
               onClick={handleLogout}
-              className="w-full bg-white text-gray-700 py-2.5 rounded-lg text-sm font-medium border border-gray-300 hover:bg-gray-50 transition-colors duration-200"
             >
               로그아웃
-            </button>
+            </Button>
           </div>
         </form>
       </div>

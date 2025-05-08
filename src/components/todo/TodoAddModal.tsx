@@ -5,6 +5,7 @@ import DatePicker from "@/components/common/ui/DatePicker";
 import Input from "@/components/common/inputs/Input";
 import { useFadeIn } from "@/hooks/useAnimation";
 import { useModalEvents } from "@/hooks/useModalEvents";
+import Button from "@/components/common/buttons/Button";
 
 import "@/styles/date-picker-custom.css";
 
@@ -230,20 +231,20 @@ export default function TodoAddModal({
 
           {/* 버튼 영역 */}
           <div className="flex justify-end space-x-3 pt-4">
-            <button
+            <Button
               type="button"
-              className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+              variant="outline"
               onClick={onClose}
             >
               취소
-            </button>
-            <button
+            </Button>
+            <Button
               type="submit"
-              className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+              variant="primary"
               disabled={!title.trim()}
             >
               추가
-            </button>
+            </Button>
           </div>
         </form>
       </div>
