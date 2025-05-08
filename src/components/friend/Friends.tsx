@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import PreviousSvgSrc from "@/assets/icons/previous.svg";
-import NextSvgSrc from "@/assets/icons/next.svg";
+import PreviousIcon from "@/components/common/icons/PreviousIcon";
+import NextIcon from "@/components/common/icons/NextIcon";
 import MockImageSrc from "@/assets/images/mock_image.jpeg";
 import { useRef, useState } from "react";
 import FriendAddModal from "./FriendAddModal";
@@ -77,7 +77,7 @@ export default function Friends() {
             onClick={scrollLeft}
             className="flex-shrink-0 z-10 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition-all duration-200 text-gray-500"
           >
-            <Image src={PreviousSvgSrc} alt="Previous" width={6} height={6} />
+            <PreviousIcon width={16} height={16} className="text-gray-600" />
           </button>
           <div
             ref={scrollContainerRef}
@@ -117,7 +117,7 @@ export default function Friends() {
             onClick={scrollRight}
             className="flex-shrink-0 z-10 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition-all duration-200 text-gray-500"
           >
-            <Image src={NextSvgSrc} alt="Next" width={6} height={6} />
+            <NextIcon width={16} height={16} className="text-gray-600" />
           </button>
         </div>
       </div>

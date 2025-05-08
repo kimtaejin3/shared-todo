@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import DetailSvgSrc from "@/assets/icons/detail.svg";
+import DetailIcon from "@/components/common/icons/DetailIcon";
+import CheckIcon from "@/components/common/icons/CheckIcon";
+import ClockIcon from "@/components/common/icons/ClockIcon";
 import Image from "next/image";
 import TodoDetail from "./TodoDetail";
 import TodoAddModal from "./TodoAddModal";
@@ -229,18 +231,7 @@ export default function TodoList({
                   onClick={() => toggleComplete(todo.id)}
                 >
                   {todo.completed && (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
+                    <CheckIcon />
                   )}
                 </div>
               )}
@@ -254,31 +245,9 @@ export default function TodoList({
                   }`}
                 >
                   {todo.completed ? (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
+                    <CheckIcon />
                   ) : (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
+                    <ClockIcon />
                   )}
                 </div>
               )}
@@ -310,12 +279,7 @@ export default function TodoList({
                       className="text-gray-600 p-1 rounded-full hover:bg-gray-100 hover:text-blue-500 transition-all duration-200"
                       onClick={(e) => handleDetailClick(todo, e)}
                     >
-                      <Image
-                        src={DetailSvgSrc}
-                        alt="Detail"
-                        width={16}
-                        height={16}
-                      />
+                      <DetailIcon width={20} height={20} />
                     </button>
                   </div>
                 </div>

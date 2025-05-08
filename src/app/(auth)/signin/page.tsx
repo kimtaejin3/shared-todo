@@ -5,7 +5,8 @@ import Image from "next/image";
 import logo from "@/assets/images/logo.png";
 import Link from "next/link";
 import IconInput from "@/components/common/inputs/IconInput";
-import { UserIcon, LockIcon } from "@/components/common/icons/InputIcons";
+import InputUserIcon from "@/components/common/icons/InputUserIcon";
+import LockIcon from "@/components/common/icons/LockIcon";
 
 export default function Page() {
   const [id, setId] = useState("");
@@ -52,7 +53,7 @@ export default function Page() {
             value={id}
             onChange={(e) => setId(e.target.value)}
             placeholder="아이디를 입력하세요"
-            icon={<UserIcon />}
+            icon={<InputUserIcon />}
             error={errors.id}
             required
           />

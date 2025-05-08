@@ -5,26 +5,31 @@ import Image from "next/image";
 import logo from "@/assets/images/logo.png";
 import Link from "next/link";
 import IconInput from "@/components/common/inputs/IconInput";
-import { UserIcon, LockIcon, ShieldIcon, GroupIcon } from "@/components/common/icons/InputIcons";
+import InputUserIcon from "@/components/common/icons/InputUserIcon";
+import LockIcon from "@/components/common/icons/LockIcon";
+import ShieldIcon from "@/components/common/icons/ShieldIcon";
+import GroupIcon from "@/components/common/icons/GroupIcon";
+import UserIcon from "@/components/common/icons/UserIcon";
 
 export default function Page() {
   const [id, setId] = useState("");
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState<{[key: string]: string}>({});
-  
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newErrors: {[key: string]: string} = {};
-    
+    const newErrors: { [key: string]: string } = {};
+
     if (!id) newErrors.id = "아이디를 입력해주세요";
     if (!nickname) newErrors.nickname = "닉네임을 입력해주세요";
     if (!password) newErrors.password = "비밀번호를 입력해주세요";
-    if (password !== confirmPassword) newErrors.confirmPassword = "비밀번호가 일치하지 않습니다";
-    
+    if (password !== confirmPassword)
+      newErrors.confirmPassword = "비밀번호가 일치하지 않습니다";
+
     setErrors(newErrors);
-    
+
     if (Object.keys(newErrors).length === 0) {
       // 실제 회원가입 처리 로직
       console.log("회원가입 처리", { id, nickname, password });

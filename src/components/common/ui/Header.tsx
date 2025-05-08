@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import LogoImgSrc from "@/assets/images/logo.png";
-import NotificationSvgSrc from "@/assets/icons/notification.svg";
-import UserSvgSrc from "@/assets/icons/user.svg";
+import NotificationIcon from "@/components/common/icons/NotificationIcon";
+import UserIcon from "@/components/common/icons/UserIcon";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
@@ -123,12 +123,7 @@ export default function Header() {
             className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors duration-200 relative"
             onClick={() => setShowNotifications(!showNotifications)}
           >
-            <Image
-              src={NotificationSvgSrc}
-              alt="Notification"
-              width={16}
-              height={16}
-            />
+            <NotificationIcon width={18} height={18} className="text-black" />
             {unreadCount > 0 && (
               <span className="absolute top-1 right-1 bg-red-500 w-1.5 h-1.5 rounded-full"></span>
             )}
@@ -218,7 +213,7 @@ export default function Header() {
         </div>
         <Link href="/profile">
           <button className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
-            <Image src={UserSvgSrc} alt="User" width={16} height={16} />
+            <UserIcon width={20} height={20} className="text-black" />
           </button>
         </Link>
       </div>
