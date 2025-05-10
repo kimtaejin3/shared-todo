@@ -1,5 +1,5 @@
 import Cover from "@/components/shared/DayView";
-import Friends from "@/components/friend/Friends";
+import Friends from "@/components/friend/FriendContainer";
 import Header from "@/components/shared/Header";
 import TodoList from "@/components/todo/TodoList";
 import { Container, Flex, Section } from "@radix-ui/themes";

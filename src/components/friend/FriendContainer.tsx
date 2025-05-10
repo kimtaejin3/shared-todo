@@ -21,7 +21,7 @@ const FRIENDS: Friend[] = [
   { id: "9", name: "한수민", image: null },
 ];
 
-export default function Friends() {
+export default function FriendContainer() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [friends, setFriends] = useState(FRIENDS);
 
@@ -53,7 +53,6 @@ export default function Friends() {
         <FriendList friends={friends} />
       </Card>
 
-      {/* 친구 추가 모달 */}
       <FriendAddModal
         isOpen={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}
