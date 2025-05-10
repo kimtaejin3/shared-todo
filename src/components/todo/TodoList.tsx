@@ -8,6 +8,7 @@ import Image from "next/image";
 import TodoDetail from "./TodoDetail";
 import TodoAddModal from "./TodoAddModal";
 import AddButton from "@/components/shared/ui/buttons/AddButton";
+import { Box, Card, Flex, Text, Heading, IconButton, Badge } from "@radix-ui/themes";
 
 import "@/styles/date-picker-custom.css";
 import DatePicker from "../shared/DatePicker";
@@ -177,19 +178,24 @@ export default function TodoList({
   };
 
   return (
-    <div className="">
-      <div className="flex justify-between items-center mb-6 max-[490px]:flex-col max-[490px]:items-start gap-4">
-        <div className="flex items-center gap-3 ">
+    <Box>
+      <Flex 
+        justify="between" 
+        align="center" 
+        mb="6" 
+        className="max-[490px]:flex-col max-[490px]:items-start gap-4"
+      >
+        <Flex align="center" gap="3">
           <DatePicker
             selectedDate={selectedDate}
             setSelectedDate={setSelectedDate}
           />
-          <span className="text-gray-700 text-sm flex-shrink-0">
+          <Text size="2" color="gray" className="flex-shrink-0">
             {filteredTodos.length > 0
               ? `${filteredTodos.length}개의 할 일이 있습니다`
               : "할 일이 없습니다"}
-          </span>
-        </div>
+          </Text>
+        </Flex>
 
         {!isFriendTodo && (
           <AddButton
@@ -199,111 +205,130 @@ export default function TodoList({
         )}
 
         {isFriendTodo && (
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 font-bold text-sm">
+          <Flex align="center" gap="2">
+            <Box className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 font-bold text-sm">
               {friendName?.charAt(0) || "K"}
-            </div>
-            <span className="text-sm font-medium text-gray-700">
+            </Box>
+            <Text size="2" weight="medium" color="gray">
               {friendName || "김철수"}님의 할 일
-            </span>
-          </div>
+            </Text>
+          </Flex>
         )}
-      </div>
+      </Flex>
 
-      <ul className="flex flex-col gap-4">
-        {filteredTodos.length > 0 ? (
-          filteredTodos.map((todo) => (
-            <li
-              key={todo.id}
-              className="p-6 rounded-xl bg-white flex items-start gap-4 shadow-sm hover:shadow-md transition-all duration-200 border border-gray-100"
-            >
-              {!isFriendTodo && (
-                <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 ${
-                    todo.completed
-                      ? "text-white"
-                      : "bg-white border-2 border-gray-300 hover:border-gray-400"
-                  }`}
-                  style={{
-                    backgroundColor: todo.completed ? todo.color : undefined,
-                    border: todo.completed ? `none` : undefined,
-                  }}
-                  onClick={() => toggleComplete(todo.id)}
-                >
-                  {todo.completed && <CheckIcon />}
-                </div>
-              )}
+      <Flex direction="column" gap="4" asChild>
+        <ul>
+          {filteredTodos.length > 0 ? (
+            filteredTodos.map((todo) => (
+              <Box
+                key={todo.id}
+                className="p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200"
+              >
+                <li>
+                  <Flex gap="4" align="start">
+                    {!isFriendTodo && (
+                      <Flex
+                        align="center"
+                        justify="center"
+                        className={`w-8 h-8 rounded-full cursor-pointer transition-all duration-200 ${
+                          todo.completed
+                            ? "text-white"
+                            : "bg-white border-2 border-gray-300 hover:border-gray-400"
+                        }`}
+                        style={{
+                          backgroundColor: todo.completed ? todo.color : undefined,
+                          border: todo.completed ? `none` : undefined,
+                        }}
+                        onClick={() => toggleComplete(todo.id)}
+                      >
+                        {todo.completed && <CheckIcon />}
+                      </Flex>
+                    )}
 
-              {isFriendTodo && (
-                <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
-                    todo.completed
-                      ? "text-white bg-green-500"
-                      : "bg-gray-100 text-gray-500"
-                  }`}
-                >
-                  {todo.completed ? <CheckIcon /> : <ClockIcon />}
-                </div>
-              )}
+                    {isFriendTodo && (
+                      <Flex
+                        align="center"
+                        justify="center"
+                        className={`w-8 h-8 rounded-full transition-all duration-200 ${
+                          todo.completed
+                            ? "text-white bg-green-500"
+                            : "bg-gray-100 text-gray-500"
+                        }`}
+                      >
+                        {todo.completed ? <CheckIcon /> : <ClockIcon />}
+                      </Flex>
+                    )}
 
-              <div className="flex flex-col gap-2 flex-grow">
-                <div className="flex justify-between items-start">
-                  <span
-                    className={`text-md font-semibold ${
-                      todo.completed
-                        ? "line-through text-gray-400"
-                        : "text-gray-700"
-                    }`}
-                  >
-                    {todo.title}
-                  </span>
-                  <div className="flex gap-1">
-                    {/* 내 투두인 경우 응원 수 표시 */}
-                    {!isFriendTodo &&
-                      todo.cheerCount &&
-                      todo.cheerCount > 0 && (
-                        <div className="flex items-center bg-gray-100 px-2 py-1 rounded-full border border-gray-200 mr-1">
-                          <span className="text-sm mr-1">👏</span>
-                          <span className="text-xs text-gray-700">
-                            {todo.cheerCount}
-                          </span>
-                        </div>
-                      )}
-                    <button
-                      className="text-gray-600 p-1 rounded-full hover:bg-gray-100 hover:text-blue-500 transition-all duration-200"
-                      onClick={(e) => handleDetailClick(todo, e)}
-                    >
-                      <DetailIcon width={20} height={20} />
-                    </button>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 flex-wrap">
-                  {todo.tags.map((tag, index) => (
-                    <span
-                      key={index}
-                      className="text-xs bg-gray-50 text-gray-600 rounded-full px-3 py-1 border border-gray-100 hover:bg-gray-100 transition-colors duration-200"
-                    >
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </li>
-          ))
-        ) : (
-          <div className="text-center py-16 bg-gray-50 rounded-xl border border-dashed border-gray-200">
-            <div className="text-gray-600 mb-2">📅</div>
-            <div className="text-gray-700 font-medium">
-              이 날짜에 할 일이 없습니다
-            </div>
-            <div className="text-gray-600 text-sm mt-1">
-              {isFriendTodo
-                ? "다른 날짜를 선택해보세요"
-                : "새로운 할 일을 추가해보세요"}
-            </div>
-          </div>
-        )}
-      </ul>
+                    <Flex direction="column" gap="2" className="flex-grow">
+                      <Flex justify="between" align="start">
+                        <Text
+                          size="3"
+                          weight="medium"
+                          className={`${
+                            todo.completed
+                              ? "line-through text-gray-400"
+                              : "text-gray-700"
+                          }`}
+                        >
+                          {todo.title}
+                        </Text>
+                        <Flex gap="1">
+                          {/* 내 투두인 경우 응원 수 표시 */}
+                          {!isFriendTodo &&
+                            todo.cheerCount &&
+                            todo.cheerCount > 0 && (
+                              <Flex align="center" className="bg-gray-100 px-2 py-1 rounded-full border border-gray-200 mr-1">
+                                <Text className="text-sm mr-1">👏</Text>
+                                <Text size="1" color="gray">
+                                  {todo.cheerCount}
+                                </Text>
+                              </Flex>
+                            )}
+                          <IconButton
+                            size="1"
+                            variant="ghost"
+                            color="gray"
+                            onClick={(e) => handleDetailClick(todo, e)}
+                            aria-label="상세 정보 보기"
+                            className="hover:text-blue-500 transition-all duration-200"
+                          >
+                            <DetailIcon width={20} height={20} />
+                          </IconButton>
+                        </Flex>
+                      </Flex>
+                      <Flex align="center" gap="2" wrap="wrap">
+                        {todo.tags.map((tag, index) => (
+                          <Badge
+                            key={index}
+                            variant="surface"
+                            radius="full"
+                            color="gray"
+                            className="hover:bg-gray-100 transition-colors duration-200"
+                          >
+                            #{tag}
+                          </Badge>
+                        ))}
+                      </Flex>
+                    </Flex>
+                  </Flex>
+                </li>
+              </Box>
+            ))
+          ) : (
+            <Card className="text-center py-16 bg-gray-50 border-dashed">
+              <Box className="text-gray-600 mb-2">📅</Box>
+              <Text weight="medium" color="gray" size="3" className="mb-1">
+                이 날짜에 할 일이 없습니다
+              </Text>
+              <Text size="2" color="gray">
+                {isFriendTodo
+                  ? "다른 날짜를 선택해보세요"
+                  : "새로운 할 일을 추가해보세요"}
+              </Text>
+            </Card>
+          )}
+        </ul>
+      </Flex>
 
       {/* 디테일 팝오버 */}
       {selectedTodo && (
@@ -322,6 +347,6 @@ export default function TodoList({
         onAdd={handleAddTodo}
         selectedDate={selectedDate}
       />
-    </div>
+    </Box>
   );
 }

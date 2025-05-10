@@ -5,7 +5,7 @@ import { useState } from "react";
 import FriendAddModal from "./FriendAddModal";
 import FriendList from "./FriendList";
 import AddButton from "@/components/shared/ui/buttons/AddButton";
-import { Card, Flex, Heading } from "@radix-ui/themes";
+import { Box, Card, Flex, Heading } from "@radix-ui/themes";
 import { Friend } from "@/types/friend";
 
 // 더미 친구 데이터
@@ -49,9 +49,9 @@ export default function FriendContainer() {
         <AddButton onClick={() => setIsAddModalOpen(true)} label="친구 추가" />
       </Flex>
 
-      <Card size="1" className="border-none">
+      <Box className="border border-gray-200 p-3 rounded-xl">
         <FriendList friends={friends} />
-      </Card>
+      </Box>
 
       <FriendAddModal
         isOpen={isAddModalOpen}
