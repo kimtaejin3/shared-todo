@@ -4,13 +4,11 @@ import { useState, useEffect } from "react";
 import DetailIcon from "@/components/shared/icons/DetailIcon";
 import CheckIcon from "@/components/shared/icons/CheckIcon";
 import ClockIcon from "@/components/shared/icons/ClockIcon";
-import Image from "next/image";
 import TodoDetail from "./TodoDetail";
 import TodoAddModal from "./TodoAddModal";
 import AddButton from "@/components/shared/ui/buttons/AddButton";
-import { Box, Card, Flex, Text, Heading, IconButton, Badge } from "@radix-ui/themes";
+import { Box, Flex, Text, IconButton, Badge } from "@radix-ui/themes";
 
-import "@/styles/date-picker-custom.css";
 import DatePicker from "../shared/DatePicker";
 
 interface Todo {
@@ -223,6 +221,7 @@ export default function TodoList({
               <Box
                 key={todo.id}
                 className="p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200"
+                asChild
               >
                 <li>
                   <Flex gap="4" align="start">
@@ -315,9 +314,9 @@ export default function TodoList({
               </Box>
             ))
           ) : (
-            <Card className="text-center py-16 bg-gray-50 border-dashed">
-              <Box className="text-gray-600 mb-2">📅</Box>
+            <Flex direction="column" align="center" className="text-center py-16 bg-gray-50 border border-gray-200 rounded-xl w-full">
               <Text weight="medium" color="gray" size="3" className="mb-1">
+              🗓️
                 이 날짜에 할 일이 없습니다
               </Text>
               <Text size="2" color="gray">
@@ -325,7 +324,7 @@ export default function TodoList({
                   ? "다른 날짜를 선택해보세요"
                   : "새로운 할 일을 추가해보세요"}
               </Text>
-            </Card>
+            </Flex>
           )}
         </ul>
       </Flex>
