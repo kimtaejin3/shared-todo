@@ -10,12 +10,10 @@ import { Friend } from "@/types/friend";
 
 interface FriendListProps {
   friends: Friend[];
-  selectedFriendId?: string;
 }
 
 export default function FriendList({
   friends,
-  selectedFriendId,
 }: FriendListProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -61,7 +59,6 @@ export default function FriendList({
             <FriendAvatar
               name={friend.name}
               image={friend.image}
-              isSelected={friend.id === selectedFriendId}
             />
           </Link>
         ))}

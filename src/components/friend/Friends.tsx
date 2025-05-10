@@ -50,7 +50,7 @@ export default function Friends() {
       </Flex>
 
       <Card size="1" className="border-none">
-        <FriendList friends={friends} selectedFriendId="1" />
+        <FriendList friends={friends} />
       </Card>
 
       {/* 친구 추가 모달 */}

@@ -5,7 +5,6 @@ import { StaticImageData } from "next/image";
 interface FriendAvatarProps {
   name: string;
   image: StaticImageData | string | null;
-  isSelected?: boolean;
   showName?: boolean;
   size?: "sm" | "md" | "lg";
 }
@@ -13,7 +12,6 @@ interface FriendAvatarProps {
 export default function FriendAvatar({
   name,
   image,
-  isSelected = false,
   showName = true,
   size = "md",
 }: FriendAvatarProps) {
@@ -26,9 +24,7 @@ export default function FriendAvatar({
 
   return (
     <Box
-      className={`relative flex-none ${dimensions[size]} rounded-full overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer ${
-        isSelected ? "ring-2 ring-blue-400 ring-offset-2" : ""
-      }`}
+      className={`relative flex-none ${dimensions[size]} rounded-full overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer`}
     >
       {image ? (
         <Image
