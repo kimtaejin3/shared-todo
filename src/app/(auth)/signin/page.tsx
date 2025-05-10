@@ -8,6 +8,7 @@ import Input from "@/components/shared/ui/Input";
 import InputUserIcon from "@/components/shared/icons/InputUserIcon";
 import LockIcon from "@/components/shared/icons/LockIcon";
 import Button from "@/components/shared/ui/buttons/Button";
+import { Box, Container, Flex, Heading, Text } from "@radix-ui/themes";
 
 export default function Page() {
   const [id, setId] = useState("");
@@ -29,10 +30,10 @@ export default function Page() {
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white p-4">
-      <div className="w-[400px] bg-white rounded-2xl overflow-hidden py-8 px-6">
-        <h1 className="flex flex-col justify-center mb-10 items-center gap-2">
-          <div className="bg-black rounded-full w-12 h-12 flex items-center justify-center">
+    <Flex className="min-h-screen bg-white p-4" align="center" justify="center">
+      <Container size="1" className="w-[400px] bg-white rounded-2xl overflow-hidden py-8 px-6">
+        <Flex direction="column" align="center" gap="2" mb="9">
+          <Box className="bg-black rounded-full w-12 h-12 flex items-center justify-center">
             <Image
               src={logo}
               alt="logo"
@@ -40,12 +41,12 @@ export default function Page() {
               height={24}
               className="brightness-0 invert"
             />
-          </div>
-          <div className="text-center">
-            <span className="text-2xl font-bold block">환영합니다</span>
-            <span className="text-gray-500 mt-1">계정에 로그인하세요</span>
-          </div>
-        </h1>
+          </Box>
+          <Flex direction="column" align="center">
+            <Heading as="h1" size="5" mb="1">환영합니다</Heading>
+            <Text size="2" color="gray">계정에 로그인하세요</Text>
+          </Flex>
+        </Flex>
 
         <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
           <Input
@@ -82,16 +83,16 @@ export default function Page() {
           </Button>
         </form>
 
-        <div className="flex gap-2 items-center justify-center mt-6">
-          <p className="text-sm text-gray-600">계정이 없으신가요?</p>
+        <Flex gap="2" align="center" justify="center" mt="6">
+          <Text size="2" color="gray">계정이 없으신가요?</Text>
           <Link
             className="text-sm font-medium text-black hover:text-gray-800 transition duration-200"
             href="/signup"
           >
             회원가입
           </Link>
-        </div>
-      </div>
-    </div>
+        </Flex>
+      </Container>
+    </Flex>
   );
 }

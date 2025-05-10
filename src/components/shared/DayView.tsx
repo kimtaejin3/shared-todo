@@ -157,7 +157,7 @@ export default function Cover() {
     <div
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
-      className="mt-4 relative flex-shrink-0 w-full h-[200px] bg-gray-200 overflow-hidden rounded-xl"
+      className="relative flex-shrink-0 w-full h-[200px] bg-gray-200 overflow-hidden rounded-xl"
     >
       {/* 커버 이미지 */}
       <Image
