@@ -49,9 +49,7 @@ export default function FriendContainer() {
         <AddButton onClick={() => setIsAddModalOpen(true)} label="친구 추가" />
       </Flex>
 
-      <Box className="border border-gray-200 p-3 rounded-xl">
-        <FriendList friends={friends} />
-      </Box>
+      <FriendList friends={friends} />
 
       <FriendAddModal
         isOpen={isAddModalOpen}

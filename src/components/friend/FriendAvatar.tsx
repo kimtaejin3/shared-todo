@@ -1,18 +1,17 @@
 import Image from "next/image";
 import { Box, Flex, Text } from "@radix-ui/themes";
 import { StaticImageData } from "next/image";
+import defaultUserImage from "@/assets/images/user.png";
 
 interface FriendAvatarProps {
   name: string;
   image: StaticImageData | string | null;
-  showName?: boolean;
   size?: "sm" | "md" | "lg";
 }
 
 export default function FriendAvatar({
   name,
   image,
-  showName = true,
   size = "md",
 }: FriendAvatarProps) {
   // 크기에 따른 width와 height 설정
@@ -23,34 +22,31 @@ export default function FriendAvatar({
   };
 
   return (
-    <Box
-      className={`relative flex-none ${dimensions[size]} rounded-full overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer`}
-    >
-      {image ? (
-        <Image
-          fill
-          objectFit="cover"
-          src={image}
-          alt={`Friend ${name}`}
-          className="transition-transform duration-200 hover:scale-105"
-        />
-      ) : (
-        <Flex
-          align="center"
-          justify="center"
-          className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200"
-        >
-          <Text size="2" weight="medium" color="gray">
-            {name.charAt(0)}
-          </Text>
-        </Flex>
-      )}
-
-      {showName && (
-        <Flex align="center" justify="center" className="absolute inset-0 bg-black text-white bg-opacity-70 py-1 text-center opacity-0 transition-all duration-200 hover:opacity-100">
-          <Text size="1">{name}</Text>
-        </Flex>
-      )}
-    </Box>
+    <Flex direction="column" align="center" gap="1" className="w-16">
+      <Box
+        className={`relative flex-none ${dimensions[size]} rounded-full overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer border-2 border-gray-200`}
+      >
+        {image ? (
+          <Image
+            fill
+            objectFit="cover"
+            src={image}
+            alt={`Friend ${name}`}
+            className="transition-transform duration-200 hover:scale-105"
+          />
+        ) : (
+          <Image
+            fill
+            objectFit="cover"
+            src={defaultUserImage}
+            alt={`Friend ${name}`}
+            className="transition-transform duration-200 hover:scale-105"
+          />
+        )}
+      </Box>
+      <Text size="1" align="center" className="truncate w-full" title={name}>
+        {name}
+      </Text>
+    </Flex>
   );
 }
