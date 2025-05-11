@@ -47,9 +47,9 @@ export default function FriendAvatar({
       )}
 
       {showName && (
-        <Box className="absolute inset-x-0 -bottom-6 bg-black bg-opacity-70 py-1 text-center opacity-0 transition-all duration-200 hover:opacity-100 hover:-translate-y-6">
+        <Flex align="center" justify="center" className="absolute inset-0 bg-black text-white bg-opacity-70 py-1 text-center opacity-0 transition-all duration-200 hover:opacity-100">
           <Text size="1">{name}</Text>
-        </Box>
+        </Flex>
       )}
     </Box>
   );

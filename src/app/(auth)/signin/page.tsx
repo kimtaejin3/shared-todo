@@ -8,7 +8,7 @@ import Input from "@/components/shared/ui/Input";
 import InputUserIcon from "@/components/shared/icons/InputUserIcon";
 import LockIcon from "@/components/shared/icons/LockIcon";
 import Button from "@/components/shared/ui/buttons/Button";
-import { Box, Container, Flex, Heading, Text } from "@radix-ui/themes";
+import { Container, Flex, Heading, Text } from "@radix-ui/themes";
 
 export default function Page() {
   const [id, setId] = useState("");
@@ -33,7 +33,7 @@ export default function Page() {
     <Flex className="min-h-screen bg-white p-4" align="center" justify="center">
       <Container size="1" className="w-[400px] bg-white rounded-2xl overflow-hidden py-8 px-6">
         <Flex direction="column" align="center" gap="2" mb="9">
-          <Box className="bg-black rounded-full w-12 h-12 flex items-center justify-center">
+          <Flex align="center" justify="center" className="bg-black rounded-full w-12 h-12">
             <Image
               src={logo}
               alt="logo"
@@ -41,7 +41,7 @@ export default function Page() {
               height={24}
               className="brightness-0 invert"
             />
-          </Box>
+          </Flex>
           <Flex direction="column" align="center">
             <Heading as="h1" size="5" mb="1">환영합니다</Heading>
             <Text size="2" color="gray">계정에 로그인하세요</Text>
