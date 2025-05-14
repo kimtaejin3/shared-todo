@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import Header from "@/components/shared/Header";
-import TodoList from "@/components/todo/TodoList";
+import TodoContainer from "@/components/todo/TodoContainer";
 import { useEffect, useState } from "react";
 
 // 더미 친구 데이터
@@ -60,7 +60,7 @@ export default function FriendTodoPage() {
         </p>
       </div>
 
-      <TodoList isFriendTodo={true} friendName={friendName} />
+      <TodoContainer isFriendTodo={true} friendName={friendName} />
     </div>
   );
 }

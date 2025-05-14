@@ -1,7 +1,7 @@
 import Cover from "@/components/shared/DayView";
 import Friends from "@/components/friend/FriendContainer";
 import Header from "@/components/shared/Header";
-import TodoList from "@/components/todo/TodoList";
+import TodoContainer from "@/components/todo/TodoContainer";
 import { Container, Flex, Section } from "@radix-ui/themes";
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
           <Cover />
         </Section>
         <Section pt="4">
-          <TodoList />
+          <TodoContainer />
         </Section>
       </Flex>
     </Container>
