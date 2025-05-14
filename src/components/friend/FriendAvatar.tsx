@@ -23,6 +23,7 @@ export default function FriendAvatar({
 
   return (
     <Flex direction="column" align="center" gap="1" className="w-16">
+      {/* border-amber-400 */}
       <Box
         className={`relative flex-none ${dimensions[size]} rounded-full overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer border-2 border-gray-200`}
       >
