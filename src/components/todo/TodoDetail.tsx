@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
-import Button from "@/components/shared/ui/buttons/Button";
+import Button from "@/components/shared/ui/Button";
 import { Box, Flex, Text, Badge, IconButton } from "@radix-ui/themes";
 import CloseIcon from "@/components/shared/icons/CloseIcon";
 import EditIcon from "@/components/shared/icons/EditIcon";

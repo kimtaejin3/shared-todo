@@ -7,7 +7,7 @@ import Link from "next/link";
 import Input from "@/components/shared/ui/Input";
 import InputUserIcon from "@/components/shared/icons/InputUserIcon";
 import LockIcon from "@/components/shared/icons/LockIcon";
-import Button from "@/components/shared/ui/buttons/Button";
+import Button from "@/components/shared/ui/Button";
 import { Container, Flex, Heading, Text } from "@radix-ui/themes";
 
 export default function Page() {
@@ -31,9 +31,16 @@ export default function Page() {
   };
   return (
     <Flex className="min-h-screen bg-white p-4" align="center" justify="center">
-      <Container size="1" className="w-[400px] bg-white rounded-2xl overflow-hidden py-8 px-6">
+      <Container
+        size="1"
+        className="w-[400px] bg-white rounded-2xl overflow-hidden py-8 px-6"
+      >
         <Flex direction="column" align="center" gap="2" mb="9">
-          <Flex align="center" justify="center" className="bg-black rounded-full w-12 h-12">
+          <Flex
+            align="center"
+            justify="center"
+            className="bg-black rounded-full w-12 h-12"
+          >
             <Image
               src={logo}
               alt="logo"
@@ -43,8 +50,12 @@ export default function Page() {
             />
           </Flex>
           <Flex direction="column" align="center">
-            <Heading as="h1" size="5" mb="1">환영합니다</Heading>
-            <Text size="2" color="gray">계정에 로그인하세요</Text>
+            <Heading as="h1" size="5" mb="1">
+              환영합니다
+            </Heading>
+            <Text size="2" color="gray">
+              계정에 로그인하세요
+            </Text>
           </Flex>
         </Flex>
 
@@ -84,7 +95,9 @@ export default function Page() {
         </form>
 
         <Flex gap="2" align="center" justify="center" mt="6">
-          <Text size="2" color="gray">계정이 없으신가요?</Text>
+          <Text size="2" color="gray">
+            계정이 없으신가요?
+          </Text>
           <Link
             className="text-sm font-medium text-black hover:text-gray-800 transition duration-200"
             href="/signup"

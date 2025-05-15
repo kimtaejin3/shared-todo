@@ -5,7 +5,7 @@ import Input from "@/components/shared/ui/Input";
 import { useFadeIn } from "@/hooks/useAnimation";
 import { useModalEvents } from "@/hooks/useModalEvents";
 import CloseIcon from "@/components/shared/icons/CloseIcon";
-import Button from "../shared/ui/buttons/Button";
+import Button from "../shared/ui/Button";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Box, Card, Flex, Heading, IconButton, Text } from "@radix-ui/themes";
 

@@ -2,10 +2,11 @@
 
 import { Box, Flex, Text } from "@radix-ui/themes";
 import DatePicker from "../shared/DatePicker";
-import AddButton from "@/components/shared/ui/buttons/AddButton";
 import TodoItem from "./TodoItem";
 import FriendTodoItem from "./FriendTodoItem";
 import { Todo } from "./TodoContainer";
+import Button from "../shared/ui/Button";
+import PlusIcon from "../shared/icons/PlusIcon";
 
 interface TodoListProps {
   todos: Todo[];
@@ -48,7 +49,11 @@ export default function TodoList({
           </Text>
         </Flex>
 
-        {!isFriendTodo && <AddButton onClick={onAddTodo} label="할 일 추가" />}
+        {!isFriendTodo && (
+          <Button variant="outline" icon={<PlusIcon />} onClick={onAddTodo}>
+            할 일 추가
+          </Button>
+        )}
 
         {isFriendTodo && (
           <Flex align="center" gap="2">

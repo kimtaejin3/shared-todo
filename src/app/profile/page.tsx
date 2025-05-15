@@ -8,7 +8,7 @@ import Input from "@/components/shared/ui/Input";
 import EmailIcon from "@/components/shared/icons/EmailIcon";
 import IdIcon from "@/components/shared/icons/IdIcon";
 import ProfileIcon from "@/components/shared/icons/ProfileIcon";
-import Button from "@/components/shared/ui/buttons/Button";
+import Button from "@/components/shared/ui/Button";
 import { Box, Flex, Text, Heading, Card } from "@radix-ui/themes";
 
 export default function ProfilePage() {

@@ -6,7 +6,7 @@ import Input from "@/components/shared/ui/Input";
 import CloseIcon from "@/components/shared/icons/CloseIcon";
 import { useFadeIn } from "@/hooks/useAnimation";
 import { useModalEvents } from "@/hooks/useModalEvents";
-import Button from "@/components/shared/ui/buttons/Button";
+import Button from "@/components/shared/ui/Button";
 
 import "@/styles/date-picker-custom.css";
 import { Flex, IconButton, Box, Text, Heading } from "@radix-ui/themes";

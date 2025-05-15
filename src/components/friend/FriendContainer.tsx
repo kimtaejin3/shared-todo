@@ -4,9 +4,11 @@ import MockImageSrc from "@/assets/images/mock_image.jpeg";
 import { useState } from "react";
 import FriendAddModal from "./FriendAddModal";
 import FriendList from "./FriendList";
-import AddButton from "@/components/shared/ui/buttons/AddButton";
-import { Box, Card, Flex, Heading } from "@radix-ui/themes";
+import { Flex, Heading } from "@radix-ui/themes";
 import { Friend } from "@/types/friend";
+
+import PlusIcon from "@/components/shared/icons/PlusIcon";
+import Button from "../shared/ui/Button";
 
 // 더미 친구 데이터
 const FRIENDS: Friend[] = [
@@ -46,7 +48,13 @@ export default function FriendContainer() {
         <Heading as="h3" size="3" color="gray">
           내 친구들
         </Heading>
-        <AddButton onClick={() => setIsAddModalOpen(true)} label="친구 추가" />
+        <Button
+          icon={<PlusIcon />}
+          variant="outline"
+          onClick={() => setIsAddModalOpen(true)}
+        >
+          친구 추가
+        </Button>
       </Flex>
 
       <FriendList friends={friends} />

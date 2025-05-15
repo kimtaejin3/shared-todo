@@ -3,7 +3,7 @@
 import { useState } from "react";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
 import { useToastFadeIn } from "@/hooks/useAnimation";
-import Button from "@/components/shared/ui/buttons/Button";
+import Button from "@/components/shared/ui/Button";
 import { Box, Flex, Text, Badge, IconButton } from "@radix-ui/themes";
 import CloseIcon from "@/components/shared/icons/CloseIcon";
 
@@ -60,81 +60,83 @@ export default function FriendTodoDetail({
             align="end"
             side="bottom"
           >
-        <Box className="p-4 border-b border-gray-100">
-          <Flex justify="between" align="start">
-            <Text className="text-lg font-semibold text-gray-800 pr-6">
-              {todo.title}
-            </Text>
-            <IconButton
-              onClick={onClose}
-              className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition-colors"
-              variant="ghost"
-              color="gray"
-              aria-label="닫기"
-            >
-              <CloseIcon />
-            </IconButton>
-          </Flex>
+            <Box className="p-4 border-b border-gray-100">
+              <Flex justify="between" align="start">
+                <Text className="text-lg font-semibold text-gray-800 pr-6">
+                  {todo.title}
+                </Text>
+                <IconButton
+                  onClick={onClose}
+                  className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition-colors"
+                  variant="ghost"
+                  color="gray"
+                  aria-label="닫기"
+                >
+                  <CloseIcon />
+                </IconButton>
+              </Flex>
 
-          {todo.owner && (
-            <Flex align="center" gap="2" className="mt-2">
-              <Box
-                className="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs font-bold"
-                style={{ backgroundColor: todo.color }}
+              {todo.owner && (
+                <Flex align="center" gap="2" className="mt-2">
+                  <Box
+                    className="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs font-bold"
+                    style={{ backgroundColor: todo.color }}
+                  >
+                    {todo.owner.name.charAt(0)}
+                  </Box>
+                  <Text className="text-sm text-gray-600">
+                    {todo.owner.name}의 할 일
+                  </Text>
+                </Flex>
+              )}
+
+              <Flex wrap="wrap" gap="1.5" className="mt-3">
+                {todo.tags.map((tag, index) => (
+                  <Badge
+                    key={index}
+                    variant="surface"
+                    radius="full"
+                    color="gray"
+                    className="text-xs bg-gray-50 text-gray-600 px-2.5 py-1 border border-gray-100"
+                  >
+                    #{tag}
+                  </Badge>
+                ))}
+              </Flex>
+
+              <Flex align="center" justify="between" className="mt-3">
+                <Flex
+                  align="center"
+                  className={
+                    todo.completed ? "text-green-500" : "text-gray-500"
+                  }
+                >
+                  <Box
+                    className={`inline-block w-2 h-2 rounded-full mr-1.5 ${
+                      todo.completed ? "bg-green-500" : "bg-gray-300"
+                    }`}
+                  />
+                  <Text size="2">{todo.completed ? "완료됨" : "진행 중"}</Text>
+                </Flex>
+                <Text size="1" color="gray">
+                  {todo.date.toLocaleDateString("ko-KR", {
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </Text>
+              </Flex>
+            </Box>
+
+            <Box className="p-3 bg-gray-50">
+              <Button
+                onClick={handleCheer}
+                variant="primary"
+                fullWidth
+                icon={<span className="text-lg">👏</span>}
               >
-                {todo.owner.name.charAt(0)}
-              </Box>
-              <Text className="text-sm text-gray-600">
-                {todo.owner.name}의 할 일
-              </Text>
-            </Flex>
-          )}
-
-          <Flex wrap="wrap" gap="1.5" className="mt-3">
-            {todo.tags.map((tag, index) => (
-              <Badge
-                key={index}
-                variant="surface"
-                radius="full"
-                color="gray"
-                className="text-xs bg-gray-50 text-gray-600 px-2.5 py-1 border border-gray-100"
-              >
-                #{tag}
-              </Badge>
-            ))}
-          </Flex>
-
-          <Flex align="center" justify="between" className="mt-3">
-            <Flex
-              align="center"
-              className={todo.completed ? "text-green-500" : "text-gray-500"}
-            >
-              <Box
-                className={`inline-block w-2 h-2 rounded-full mr-1.5 ${
-                  todo.completed ? "bg-green-500" : "bg-gray-300"
-                }`}
-              />
-              <Text size="2">{todo.completed ? "완료됨" : "진행 중"}</Text>
-            </Flex>
-            <Text size="1" color="gray">
-              {todo.date.toLocaleDateString("ko-KR", {
-                month: "long",
-                day: "numeric",
-              })}
-            </Text>
-          </Flex>
-        </Box>
-
-        <Box className="p-3 bg-gray-50">
-          <Button
-            onClick={handleCheer}
-            variant="primary"
-            fullWidth
-            icon={<span className="text-lg">👏</span>}
-          >
-            응원하기
-          </Button>
-        </Box>
+                응원하기
+              </Button>
+            </Box>
           </PopoverPrimitive.Content>
         </PopoverPrimitive.Portal>
       </PopoverPrimitive.Root>
