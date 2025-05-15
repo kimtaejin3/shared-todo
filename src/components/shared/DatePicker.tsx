@@ -2,6 +2,7 @@ import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale";
 import { format } from "date-fns";
+import DropdownArrowIcon from "./icons/DropdownArrowIcon";
 
 interface DatePickerProps {
   selectedDate: Date;
@@ -34,15 +35,7 @@ export default function DatePicker({
         popperPlacement="bottom-start"
       />
       <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M8 10L12 6H4L8 10Z" fill="#9CA3AF" />
-        </svg>
+        <DropdownArrowIcon />
       </div>
     </div>
   );

@@ -97,9 +97,6 @@ export default function TodoContainer({
         todoCount={filteredTodos.length}
       />
 
-      {/* 디테일 팝오버는 TodoItem으로 이동했으므로 삭제 */}
-
-      {/* TodoAddModal */}
       <TodoAddModal
         isOpen={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}

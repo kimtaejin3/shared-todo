@@ -4,6 +4,7 @@ import { Box, Flex, Text } from "@radix-ui/themes";
 import DatePicker from "../shared/DatePicker";
 import AddButton from "@/components/shared/ui/buttons/AddButton";
 import TodoItem from "./TodoItem";
+import FriendTodoItem from "./FriendTodoItem";
 import { Todo } from "./TodoContainer";
 
 interface TodoListProps {
@@ -29,10 +30,10 @@ export default function TodoList({
 }: TodoListProps) {
   return (
     <Box>
-      <Flex 
-        justify="between" 
-        align="center" 
-        mb="6" 
+      <Flex
+        justify="between"
+        align="center"
+        mb="6"
         className="max-[490px]:flex-col max-[490px]:items-start gap-4"
       >
         <Flex align="center" gap="3">
@@ -47,12 +48,7 @@ export default function TodoList({
           </Text>
         </Flex>
 
-        {!isFriendTodo && (
-          <AddButton
-            onClick={onAddTodo}
-            label="할 일 추가"
-          />
-        )}
+        {!isFriendTodo && <AddButton onClick={onAddTodo} label="할 일 추가" />}
 
         {isFriendTodo && (
           <Flex align="center" gap="2">
@@ -69,19 +65,29 @@ export default function TodoList({
       <Flex direction="column" gap="4" asChild>
         <ul>
           {todos.length > 0 ? (
-            todos.map((todo) => (
-              <TodoItem
-                key={todo.id}
-                todo={todo}
-                isFriendTodo={isFriendTodo}
-                onToggleComplete={onToggleComplete}
-              />
-            ))
+            todos.map((todo) =>
+              isFriendTodo ? (
+                <FriendTodoItem
+                  key={todo.id}
+                  todo={todo}
+                  onToggleComplete={onToggleComplete}
+                />
+              ) : (
+                <TodoItem
+                  key={todo.id}
+                  todo={todo}
+                  onToggleComplete={onToggleComplete}
+                />
+              )
+            )
           ) : (
-            <Flex direction="column" align="center" className="text-center py-16 bg-gray-50 border border-gray-200 rounded-xl w-full">
+            <Flex
+              direction="column"
+              align="center"
+              className="text-center py-16 bg-gray-50 border border-gray-200 rounded-xl w-full"
+            >
               <Text weight="medium" color="gray" size="3" className="mb-1">
-              🗓️
-                이 날짜에 할 일이 없습니다
+                🗓️ 이 날짜에 할 일이 없습니다
               </Text>
               <Text size="2" color="gray">
                 {isFriendTodo

@@ -14,7 +14,6 @@ export default function FriendAvatar({
   image,
   size = "md",
 }: FriendAvatarProps) {
-  // 크기에 따른 width와 height 설정
   const dimensions = {
     sm: "w-10 h-10",
     md: "w-14 h-14",

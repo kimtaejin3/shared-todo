@@ -4,36 +4,34 @@ import { useState } from "react";
 import { Box, Flex, Text, IconButton, Badge } from "@radix-ui/themes";
 import DetailIcon from "@/components/shared/icons/DetailIcon";
 import CheckIcon from "@/components/shared/icons/CheckIcon";
+import ClockIcon from "@/components/shared/icons/ClockIcon";
 import TodoDetail from "./TodoDetail";
+import FriendTodoDetail from "./FriendTodoDetail";
 
-export interface TodoItemProps {
+export interface FriendTodoItemProps {
   todo: {
     id: number;
     title: string;
     completed: boolean;
     tags: string[];
     color: string;
-    cheerCount?: number;
-    cheerleaders?: Array<{ id: string; name: string; image?: string }>;
     date: Date;
+    owner?: {
+      name: string;
+      image?: string;
+    };
   };
-  onToggleComplete: (id: number) => void;
-  onEdit?: (id: number) => void;
-  onDelete?: (id: number) => void;
+  onToggleComplete?: (id: number) => void;
 }
 
-export default function TodoItem({
+export default function FriendTodoItem({
   todo,
   onToggleComplete,
-  onEdit,
-  onDelete,
-}: TodoItemProps) {
+}: FriendTodoItemProps) {
   const [showDetail, setShowDetail] = useState(false);
-  const [detailPosition, setDetailPosition] = useState({ top: 0, left: 0 });
 
   const handleDetailClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-
     setShowDetail(true);
   };
 
@@ -52,18 +50,13 @@ export default function TodoItem({
             <Flex
               align="center"
               justify="center"
-              className={`w-8 h-8 rounded-full cursor-pointer transition-all duration-200 ${
+              className={`w-8 h-8 rounded-full transition-all duration-200 ${
                 todo.completed
-                  ? "text-white"
-                  : "bg-white border-2 border-gray-300 hover:border-gray-400"
+                  ? "text-white bg-green-500"
+                  : "bg-gray-100 text-gray-500"
               }`}
-              style={{
-                backgroundColor: todo.completed ? todo.color : undefined,
-                border: todo.completed ? `none` : undefined,
-              }}
-              onClick={() => onToggleComplete(todo.id)}
             >
-              {todo.completed && <CheckIcon />}
+              {todo.completed ? <CheckIcon /> : <ClockIcon />}
             </Flex>
 
             <Flex direction="column" gap="2" className="flex-grow">
@@ -79,30 +72,16 @@ export default function TodoItem({
                 >
                   {todo.title}
                 </Text>
-                <Flex gap="1">
-                  {/* 응원 수 표시 */}
-                  {todo.cheerCount && todo.cheerCount > 0 && (
-                    <Flex
-                      align="center"
-                      className="bg-gray-100 px-2 py-1 rounded-full border border-gray-200 mr-1"
-                    >
-                      <Text className="text-sm mr-1">👏</Text>
-                      <Text size="1" color="gray">
-                        {todo.cheerCount}
-                      </Text>
-                    </Flex>
-                  )}
-                  <IconButton
-                    size="1"
-                    variant="ghost"
-                    color="gray"
-                    onClick={handleDetailClick}
-                    aria-label="상세 정보 보기"
-                    className="hover:text-blue-500 transition-all duration-200"
-                  >
-                    <DetailIcon width={20} height={20} />
-                  </IconButton>
-                </Flex>
+                <IconButton
+                  size="1"
+                  variant="ghost"
+                  color="gray"
+                  onClick={handleDetailClick}
+                  aria-label="상세 정보 보기"
+                  className="hover:text-blue-500 transition-all duration-200"
+                >
+                  <DetailIcon width={20} height={20} />
+                </IconButton>
               </Flex>
               <Flex align="center" gap="2" wrap="wrap">
                 {todo.tags.map((tag, index) => (
@@ -122,13 +101,7 @@ export default function TodoItem({
         </li>
       </Box>
 
-      <TodoDetail
-        todo={todo}
-        open={showDetail}
-        onClose={closeDetail}
-        onEdit={onEdit}
-        onDelete={onDelete}
-      />
+      <FriendTodoDetail todo={todo} open={showDetail} onClose={closeDetail} />
     </Box>
   );
 }
