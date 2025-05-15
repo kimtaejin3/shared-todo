@@ -5,7 +5,6 @@ import { Box, Flex, Text, IconButton, Badge } from "@radix-ui/themes";
 import DetailIcon from "@/components/shared/icons/DetailIcon";
 import CheckIcon from "@/components/shared/icons/CheckIcon";
 import ClockIcon from "@/components/shared/icons/ClockIcon";
-import TodoDetail from "./TodoDetail";
 import FriendTodoDetail from "./FriendTodoDetail";
 
 export interface FriendTodoItemProps {
