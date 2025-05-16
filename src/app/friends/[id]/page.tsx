@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import Header from "@/components/shared/Header";
 import TodoContainer from "@/components/todo/TodoContainer";
+import FriendNotFound from "@/components/friend/FriendNotFound";
 import { useEffect, useState } from "react";
 
 // 더미 친구 데이터
@@ -24,22 +25,7 @@ export default function FriendTodoPage() {
   }, [params.id]);
 
   if (!friendName) {
-    return (
-      <div className="max-w-[670px] mx-auto px-4">
-        <Header />
-        <div className="flex items-center justify-center h-[50vh]">
-          <div className="text-center">
-            <div className="text-gray-400 text-4xl mb-4">😕</div>
-            <h2 className="text-xl font-semibold text-gray-700 mb-2">
-              친구를 찾을 수 없습니다
-            </h2>
-            <p className="text-gray-500">
-              요청하신 친구의 정보를 찾을 수 없습니다
-            </p>
-          </div>
-        </div>
-      </div>
-    );
+    return <FriendNotFound />;
   }
 
   return (
