@@ -1,30 +1,27 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import React, { ReactNode, InputHTMLAttributes } from "react";
 
-interface InputProps {
+type InputVariant = 'default' | 'withIcon' | 'withButton';
+
+interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  // 기본 필수 속성
   id: string;
   label: string;
-  value: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
-  type?: string;
-  maxLength?: number;
-  required?: boolean;
-  disabled?: boolean;
-  error?: string;
-  className?: string;
-  helpText?: string;
-  inputRef?: React.RefObject<HTMLInputElement>;
-  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   
-  // 아이콘 관련 속성
+  // 스타일 및 상태 관련
+  error?: string;
+  helpText?: string;
+  variant?: InputVariant;
+  
+  // 추가 요소
   leftIcon?: ReactNode;
   rightElement?: ReactNode;
-  
-  // 버튼 관련 속성
   buttonText?: string;
   onButtonClick?: () => void;
+  
+  // 참조 관련
+  inputRef?: React.RefObject<HTMLInputElement>;
 }
 
 export default function Input({
@@ -42,34 +39,30 @@ export default function Input({
   helpText,
   inputRef,
   onKeyDown,
-  
-  // 아이콘 관련 속성
+  variant = 'default',
   leftIcon,
   rightElement,
-  
-  // 버튼 관련 속성
   buttonText,
   onButtonClick,
+  ...rest
 }: InputProps) {
   // 입력 필드 스타일 계산
   const getInputClassName = () => {
     let baseStyle = `border ${error ? "border-red-300" : "border-gray-300"} focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent ${disabled ? "bg-gray-50 text-gray-500" : ""} ${className}`;
     
-    // 왼쪽 아이콘이 있는 경우
-    if (leftIcon) baseStyle += " pl-10";
-    
-    // 오른쪽 요소가 있는 경우
-    if (rightElement) baseStyle += " pr-10";
+    // 배리언트에 따른 스타일 적용
+    if (variant === 'withIcon' || leftIcon) baseStyle += " pl-10";
+    if (variant === 'withIcon' || rightElement) baseStyle += " pr-10";
     
     // 버튼이 있는 경우
-    if (buttonText) {
+    if (variant === 'withButton' || buttonText) {
       baseStyle += " rounded-l-lg";
     } else {
       baseStyle += " rounded-lg";
     }
     
     // 기본 패딩 및 너비
-    if (!buttonText) {
+    if (!(variant === 'withButton' || buttonText)) {
       baseStyle += " w-full";
     }
     
@@ -99,15 +92,16 @@ export default function Input({
             <input
               type={type}
               id={id}
-              ref={inputRef}
-              className={getInputClassName()}
-              placeholder={placeholder}
               value={value}
               onChange={onChange}
-              required={required}
+              placeholder={placeholder}
               maxLength={maxLength}
+              required={required}
               disabled={disabled}
+              ref={inputRef}
               onKeyDown={onKeyDown}
+              className={getInputClassName()}
+              {...rest}
             />
             {rightElement && !buttonText && (
               <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
@@ -144,6 +138,7 @@ export default function Input({
             maxLength={maxLength}
             disabled={disabled}
             onKeyDown={onKeyDown}
+            {...rest}
           />
           {rightElement && (
             <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
