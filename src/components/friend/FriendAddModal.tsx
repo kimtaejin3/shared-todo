@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import Input from "@/components/common/inputs/Input";
+import Input from "@/components/shared/ui/Input";
 import { useFadeIn } from "@/hooks/useAnimation";
 import { useModalEvents } from "@/hooks/useModalEvents";
-import CloseIcon from "@/components/common/icons/CloseIcon";
-import Button from "../common/buttons/Button";
+import CloseIcon from "@/components/shared/icons/CloseIcon";
+import Button from "../shared/ui/Button";
+import * as Dialog from "@radix-ui/react-dialog";
+import { Box, Card, Flex, Heading, IconButton, Text } from "@radix-ui/themes";
 
 interface FriendAddModalProps {
   isOpen: boolean;
@@ -47,58 +49,64 @@ export default function FriendAddModal({
     }
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 px-4">
-      <div
-        ref={modalRef}
-        className={`bg-white rounded-2xl p-6 w-full max-w-md shadow-xl ${fadeInClass}`}
-      >
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-bold text-gray-800">친구 추가하기</h2>
-          <button
-            onClick={onClose}
-            className="p-1 rounded-full hover:bg-gray-100 transition-colors"
-          >
-            <CloseIcon />
-          </button>
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <Input
-            id="friendId"
-            label="친구 ID"
-            value={friendId}
-            onChange={(e) => setFriendId(e.target.value)}
-            placeholder="추가할 친구의 ID를 입력하세요"
-            required
-            inputRef={inputRef}
-            helpText="친구의 ID를 입력하면 친구 요청이 전송됩니다. 상대방이 수락하면 친구가 됩니다."
-          />
-
-          <div className="flex justify-end space-x-3 pt-4">
-            <Button
-              type="button"
-              variant="outline"
-              fullWidth
-              size="lg"
-              onClick={onClose}
+    <Dialog.Root open={isOpen} onOpenChange={onClose}>
+      <Dialog.Portal>
+        <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-50 z-50" />
+        <Flex
+          align="center"
+          justify="center"
+          className="fixed inset-0 z-50 px-4"
+        >
+          <Dialog.Content asChild>
+            <Box
+              ref={modalRef}
+              className={`w-full max-w-md p-6 shadow-xl bg-white rounded-2xl ${fadeInClass}`}
             >
-              취소
-            </Button>
-            <Button
-              type="submit"
-              variant="primary"
-              fullWidth
-              size="lg"
-              disabled={!friendId.trim()}
-            >
-              요청 보내기
-            </Button>
-          </div>
-        </form>
-      </div>
-    </div>
+              <Flex justify="between" align="center" className="mb-6">
+                <Heading size="4" className="text-gray-800 font-bold">
+                  친구 추가하기
+                </Heading>
+                <Dialog.Close asChild>
+                  <IconButton
+                    variant="ghost"
+                    className="rounded-full hover:bg-gray-100 transition-colors"
+                    aria-label="닫기"
+                  >
+                    <CloseIcon />
+                  </IconButton>
+                </Dialog.Close>
+              </Flex>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <Input
+                  id="friendId"
+                  label="친구 ID"
+                  value={friendId}
+                  onChange={(e) => setFriendId(e.target.value)}
+                  placeholder="추가할 친구의 ID를 입력하세요"
+                  required
+                  inputRef={inputRef}
+                  helpText="친구의 ID를 입력하면 친구 요청이 전송됩니다. 상대방이 수락하면 친구가 됩니다."
+                />
+
+                <Flex justify="end" gap="10px">
+                  <Button type="button" variant="outline" onClick={onClose}>
+                    취소
+                  </Button>
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    disabled={!friendId.trim()}
+                  >
+                    요청 보내기
+                  </Button>
+                </Flex>
+              </form>
+            </Box>
+          </Dialog.Content>
+        </Flex>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 }

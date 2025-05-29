@@ -1,15 +1,15 @@
 "use client";
 
 import { useState, useRef, ChangeEvent } from "react";
-import Header from "@/components/common/ui/Header";
+import Header from "@/components/shared/Header";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import IconInput from "@/components/common/inputs/IconInput";
-import ButtonInput from "@/components/common/inputs/ButtonInput";
-import InputUserIcon from "@/components/common/icons/InputUserIcon";
-import EmailIcon from "@/components/common/icons/EmailIcon";
-import IdIcon from "@/components/common/icons/IdIcon";
-import Button from "@/components/common/buttons/Button";
+import Input from "@/components/shared/ui/Input";
+import EmailIcon from "@/components/shared/icons/EmailIcon";
+import IdIcon from "@/components/shared/icons/IdIcon";
+import ProfileIcon from "@/components/shared/icons/ProfileIcon";
+import Button from "@/components/shared/ui/Button";
+import { Box, Flex, Text, Heading, Card } from "@radix-ui/themes";
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -20,14 +20,12 @@ export default function ProfilePage() {
   const [isNicknameError, setIsNicknameError] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // 닉네임 변경 처리
   const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setNickname(value);
     setIsNicknameError(value.trim() === "");
   };
 
-  // 프로필 이미지 변경 처리
   const handleProfileImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -39,12 +37,10 @@ export default function ProfilePage() {
     }
   };
 
-  // 프로필 이미지 선택 버튼 클릭
   const handleProfileImageClick = () => {
     fileInputRef.current?.click();
   };
 
-  // 프로필 저장 처리
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -56,21 +52,25 @@ export default function ProfilePage() {
     router.push("/");
   };
 
-  // 로그아웃 처리
   const handleLogout = () => {
-    // 실제 구현에서는 여기서 로그아웃 API를 호출하고 세션/토큰을 삭제합니다.
     if (confirm("로그아웃 하시겠습니까?")) {
       router.push("/");
     }
   };
 
   return (
-    <div className="max-w-[670px] mx-auto px-4">
+    <Box className="max-w-[670px] mx-auto px-4">
       <Header />
 
-      <div className="mt-6 flex flex-col items-center bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        <div className="relative mb-2">
-          <div
+      <Flex
+        direction="column"
+        align="center"
+        className="mt-6 bg-white rounded-2xl shadow-sm border border-gray-100 p-6"
+      >
+        <Box className="relative mb-2">
+          <Flex
+            align="center"
+            justify="center"
             onClick={handleProfileImageClick}
             className="relative w-24 h-24 rounded-full bg-gray-200 overflow-hidden cursor-pointer group"
           >
@@ -82,25 +82,22 @@ export default function ProfilePage() {
                 style={{ objectFit: "cover" }}
               />
             ) : (
-              <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-12 w-12"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
+              <Flex
+                align="center"
+                justify="center"
+                className="absolute inset-0 text-gray-400"
+              >
+                <ProfileIcon className="h-12 w-12" />
+              </Flex>
             )}
-            <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-200">
-              <div className="text-white text-xs font-medium">사진 변경</div>
-            </div>
-          </div>
+            <Flex
+              align="center"
+              justify="center"
+              className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            >
+              <Text className="text-white text-xs font-medium">사진 변경</Text>
+            </Flex>
+          </Flex>
           <input
             type="file"
             ref={fileInputRef}
@@ -108,47 +105,40 @@ export default function ProfilePage() {
             className="hidden"
             accept="image/*"
           />
-        </div>
+        </Box>
 
-        <div className="text-center mb-5">
-          <h2 className="text-lg font-semibold text-gray-800">{nickname}</h2>
-        </div>
+        <Heading className="text-lg font-semibold text-gray-800">
+          {nickname}
+        </Heading>
 
         <form onSubmit={handleSave} className="w-full max-w-sm space-y-4">
-          <ButtonInput
+          <Input
             id="nickname"
             label="닉네임"
             value={nickname}
             onChange={handleNicknameChange}
             placeholder="닉네임 입력"
             error={isNicknameError ? "올바른 닉네임이 아닙니다." : ""}
-            buttonText="수정"
-            onButtonClick={() => console.log("닉네임 수정 버튼 클릭")}
           />
 
-          <IconInput
+          <Input
             id="email"
             label="이메일"
             value={email}
             disabled
-            icon={<EmailIcon />}
+            leftIcon={<EmailIcon />}
           />
 
-          <IconInput
+          <Input
             id="userId"
             label="내 ID"
             value={userId}
             disabled
-            icon={<IdIcon />}
+            leftIcon={<IdIcon />}
           />
 
-          <div className="pt-4 flex flex-col gap-3">
-            <Button
-              type="submit"
-              variant="primary"
-              fullWidth
-              size="lg"
-            >
+          <Flex className="pt-4 flex-col gap-3">
+            <Button type="submit" variant="primary" fullWidth size="lg">
               저장하기
             </Button>
 
@@ -161,9 +151,9 @@ export default function ProfilePage() {
             >
               로그아웃
             </Button>
-          </div>
+          </Flex>
         </form>
-      </div>
-    </div>
+      </Flex>
+    </Box>
   );
 }

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import CoverExampleSrc from "@/assets/images/cover-example2.jpeg";
 import { useState, useEffect } from "react";
+import { Box, Flex, Text, Button } from "@radix-ui/themes";
 
 // 날씨 아이콘을 위한 임포트
 import {
@@ -154,10 +155,10 @@ export default function Cover() {
   }, []);
 
   return (
-    <div
+    <Box
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
-      className="mt-4 relative flex-shrink-0 w-full h-[200px] bg-gray-200 overflow-hidden rounded-xl"
+      className="relative flex-shrink-0 w-full h-[200px] bg-gray-200 overflow-hidden rounded-xl"
     >
       {/* 커버 이미지 */}
       <Image
@@ -169,41 +170,61 @@ export default function Cover() {
       />
 
       {/* 시간/날짜 오버레이 */}
-      <div className="absolute inset-0 flex flex-col justify-center px-8 text-white">
-        <div className="flex justify-between items-end w-full max-[490px]:flex-col max-[490px]:items-start gap-4">
-          <div>
-            <div className="flex items-end gap-3 mb-1">
-              <div className="text-4xl font-bold drop-shadow-md">
+      <Flex
+        direction="column"
+        justify="center"
+        className="absolute inset-0 px-8 text-white"
+      >
+        <Flex
+          justify="between"
+          align="end"
+          className="w-full max-[490px]:flex-col max-[490px]:items-start gap-4"
+        >
+          <Box>
+            <Flex align="end" gap="3" className="mb-1">
+              <Text size="8" weight="bold" className="drop-shadow-md">
                 {currentTime}
-              </div>
-              <div className="text-xl font-medium mb-1 drop-shadow-md">
+              </Text>
+              <Text size="5" weight="medium" className="mb-1 drop-shadow-md">
                 {greeting}
-              </div>
-            </div>
-            <div className="text-lg font-medium drop-shadow-md opacity-90">
+              </Text>
+            </Flex>
+            <Text
+              size="4"
+              weight="medium"
+              className="drop-shadow-md opacity-90"
+            >
               {currentDate}
-            </div>
-          </div>
+            </Text>
+          </Box>
 
           {/* 날씨 정보 */}
           {weather && !isLoading && (
-            <div className="flex items-center gap-2 bg-black/20 px-4 py-2 rounded-lg backdrop-blur-sm">
-              <div className="text-white">{getWeatherIcon(weather.icon)}</div>
-              <div>
-                <div className="text-2xl font-bold">{weather.temp}°C</div>
-                <div className="text-sm opacity-90">{weather.cityName}</div>
-              </div>
-            </div>
+            <Flex
+              align="center"
+              gap="2"
+              className="bg-black/20 px-4 py-2 rounded-lg backdrop-blur-sm"
+            >
+              <Box className="text-white">{getWeatherIcon(weather.icon)}</Box>
+              <Box>
+                <Text size="6" weight="bold">
+                  {weather.temp}°C
+                </Text>
+                <Text size="1" className="opacity-90">
+                  {weather.cityName}
+                </Text>
+              </Box>
+            </Flex>
           )}
-        </div>
-      </div>
+        </Flex>
+      </Flex>
 
       {/* 배경 사진 변경 버튼 */}
       {isHover && (
-        <button className="bg-white/80 hover:bg-white absolute top-3 right-3 px-3 py-1.5 rounded-lg text-sm font-medium text-gray-700 backdrop-blur-sm transition-all shadow-sm">
+        <button className="absolute top-3 right-3 px-3 py-1.5 rounded-lg text-sm font-medium text-gray-700 bg-white/80 hover:bg-white backdrop-blur-sm transition-all shadow-sm">
           배경사진 바꾸기
         </button>
       )}
-    </div>
+    </Box>
   );
 }
