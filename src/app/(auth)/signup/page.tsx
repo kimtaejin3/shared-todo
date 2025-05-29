@@ -5,7 +5,6 @@ import Image from "next/image";
 import logo from "@/assets/images/logo.png";
 import Link from "next/link";
 import Input from "@/components/shared/ui/Input";
-import InputUserIcon from "@/components/shared/icons/InputUserIcon";
 import LockIcon from "@/components/shared/icons/LockIcon";
 import ShieldIcon from "@/components/shared/icons/ShieldIcon";
 import GroupIcon from "@/components/shared/icons/GroupIcon";
