@@ -194,16 +194,6 @@ export default function Notification() {
             </Box>
           )}
         </Box>
-        {notifications.length > 0 && (
-          <Box className="p-3 bg-gray-50 text-center border-t border-gray-100">
-            <IconButton
-              variant="ghost"
-              className="text-sm text-gray-500 hover:text-blue-500 font-medium transition-colors duration-200"
-            >
-              모든 알림 보기
-            </IconButton>
-          </Box>
-        )}
       </Popover.Content>
     </Popover.Root>
   );

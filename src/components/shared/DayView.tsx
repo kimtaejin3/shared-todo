@@ -206,14 +206,14 @@ export default function Cover() {
               className="bg-black/20 px-4 py-2 rounded-lg backdrop-blur-sm"
             >
               <Box className="text-white">{getWeatherIcon(weather.icon)}</Box>
-              <Box>
+              <Flex direction="column">
                 <Text size="6" weight="bold">
                   {weather.temp}°C
                 </Text>
                 <Text size="1" className="opacity-90">
                   {weather.cityName}
                 </Text>
-              </Box>
+              </Flex>
             </Flex>
           )}
         </Flex>
