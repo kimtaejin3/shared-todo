@@ -7,7 +7,7 @@ import { useModalEvents } from "@/hooks/useModalEvents";
 import CloseIcon from "@/components/shared/icons/CloseIcon";
 import Button from "../shared/ui/Button";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Box, Card, Flex, Heading, IconButton, Text } from "@radix-ui/themes";
+import { Box, Flex, Heading, IconButton } from "@radix-ui/themes";
 
 interface FriendAddModalProps {
   isOpen: boolean;
