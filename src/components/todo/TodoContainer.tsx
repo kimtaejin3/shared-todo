@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { Box } from "@radix-ui/themes";
 import TodoList from "./TodoList";
-import TodoDetail from "./TodoDetail";
 import TodoAddModal from "./TodoAddModal";
 
 export interface Todo {
@@ -24,11 +23,13 @@ export interface Todo {
 interface TodoContainerProps {
   isFriendTodo?: boolean;
   friendName?: string;
+  className?: string;
 }
 
 export default function TodoContainer({
   isFriendTodo = false,
   friendName,
+  className,
 }: TodoContainerProps) {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [selectedTodo, setSelectedTodo] = useState<Todo | null>(null);
@@ -85,7 +86,7 @@ export default function TodoContainer({
   };
 
   return (
-    <Box>
+    <Box className={className}>
       <TodoList
         todos={filteredTodos}
         selectedDate={selectedDate}

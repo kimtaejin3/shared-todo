@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Box, Flex, Text, IconButton, Badge } from "@radix-ui/themes";
 import DetailIcon from "@/components/shared/icons/DetailIcon";
 import CheckIcon from "@/components/shared/icons/CheckIcon";
-import TodoDetail from "./TodoDetail";
 
 export interface TodoItemProps {
   todo: {
@@ -22,25 +21,7 @@ export interface TodoItemProps {
   onDelete?: (id: number) => void;
 }
 
-export default function TodoItem({
-  todo,
-  onToggleComplete,
-  onEdit,
-  onDelete,
-}: TodoItemProps) {
-  const [showDetail, setShowDetail] = useState(false);
-  const [detailPosition, setDetailPosition] = useState({ top: 0, left: 0 });
-
-  const handleDetailClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
-    setShowDetail(true);
-  };
-
-  const closeDetail = () => {
-    setShowDetail(false);
-  };
-
+export default function TodoItem({ todo, onToggleComplete }: TodoItemProps) {
   return (
     <Box className="relative">
       <Box
@@ -92,16 +73,6 @@ export default function TodoItem({
                       </Text>
                     </Flex>
                   )}
-                  <IconButton
-                    size="1"
-                    variant="ghost"
-                    color="gray"
-                    onClick={handleDetailClick}
-                    aria-label="상세 정보 보기"
-                    className="hover:text-blue-500 transition-all duration-200"
-                  >
-                    <DetailIcon width={20} height={20} />
-                  </IconButton>
                 </Flex>
               </Flex>
               <Flex align="center" gap="2" wrap="wrap">
@@ -121,14 +92,6 @@ export default function TodoItem({
           </Flex>
         </li>
       </Box>
-
-      <TodoDetail
-        todo={todo}
-        open={showDetail}
-        onClose={closeDetail}
-        onEdit={onEdit}
-        onDelete={onDelete}
-      />
     </Box>
   );
 }

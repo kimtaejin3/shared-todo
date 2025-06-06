@@ -1,11 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Box, Flex, Text, IconButton, Badge } from "@radix-ui/themes";
-import DetailIcon from "@/components/shared/icons/DetailIcon";
+import { Box, Flex, Text, Badge } from "@radix-ui/themes";
 import CheckIcon from "@/components/shared/icons/CheckIcon";
 import ClockIcon from "@/components/shared/icons/ClockIcon";
-import FriendTodoDetail from "./FriendTodoDetail";
 
 export interface FriendTodoItemProps {
   todo: {
@@ -27,17 +25,6 @@ export default function FriendTodoItem({
   todo,
   onToggleComplete,
 }: FriendTodoItemProps) {
-  const [showDetail, setShowDetail] = useState(false);
-
-  const handleDetailClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    setShowDetail(true);
-  };
-
-  const closeDetail = () => {
-    setShowDetail(false);
-  };
-
   return (
     <Box className="relative">
       <Box
@@ -71,16 +58,7 @@ export default function FriendTodoItem({
                 >
                   {todo.title}
                 </Text>
-                <IconButton
-                  size="1"
-                  variant="ghost"
-                  color="gray"
-                  onClick={handleDetailClick}
-                  aria-label="상세 정보 보기"
-                  className="hover:text-blue-500 transition-all duration-200"
-                >
-                  <DetailIcon width={20} height={20} />
-                </IconButton>
+                <button>응원하기</button>
               </Flex>
               <Flex align="center" gap="2" wrap="wrap">
                 {todo.tags.map((tag, index) => (
@@ -99,8 +77,6 @@ export default function FriendTodoItem({
           </Flex>
         </li>
       </Box>
-
-      <FriendTodoDetail todo={todo} open={showDetail} onClose={closeDetail} />
     </Box>
   );
 }

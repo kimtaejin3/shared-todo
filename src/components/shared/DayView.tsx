@@ -22,7 +22,7 @@ interface WeatherData {
   cityName: string;
 }
 
-export default function Cover() {
+export default function DayView() {
   const [isHover, setIsHover] = useState(false);
   const [greeting, setGreeting] = useState("");
   const [currentTime, setCurrentTime] = useState("");

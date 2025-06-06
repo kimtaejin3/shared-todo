@@ -54,17 +54,6 @@ export default function TodoList({
             할 일 추가
           </Button>
         )}
-
-        {isFriendTodo && (
-          <Flex align="center" gap="2">
-            <Box className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 font-bold text-sm">
-              {friendName?.charAt(0) || "K"}
-            </Box>
-            <Text size="2" weight="medium" color="gray">
-              {friendName || "김철수"}님의 할 일
-            </Text>
-          </Flex>
-        )}
       </Flex>
 
       <Flex direction="column" gap="4" asChild>

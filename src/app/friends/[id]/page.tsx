@@ -6,6 +6,7 @@ import TodoContainer from "@/components/todo/TodoContainer";
 import FriendNotFound from "@/components/friend/FriendNotFound";
 import { useEffect, useState } from "react";
 import { Box, Flex, Text, Heading, Avatar } from "@radix-ui/themes";
+import DayView from "@/components/shared/DayView";
 
 // 더미 친구 데이터
 const FRIENDS = [
@@ -36,7 +37,7 @@ export default function FriendTodoPage() {
         <Flex className="items-center gap-3 mb-2">
           <Avatar
             fallback={friendName.charAt(0)}
-            className="w-10 h-10 bg-blue-100 text-blue-600 font-bold"
+            className="w-10 h-10 bg-blue-100 text-blue-600 font-bold !rounded-full"
           />
           <Heading as="h1" size="5">
             {friendName}님의 할 일 목록
@@ -48,7 +49,13 @@ export default function FriendTodoPage() {
         </Text>
       </Box>
 
-      <TodoContainer isFriendTodo={true} friendName={friendName} />
+      <DayView />
+
+      <TodoContainer
+        className="mt-6"
+        isFriendTodo={true}
+        friendName={friendName}
+      />
     </Box>
   );
 }
