@@ -66,7 +66,6 @@ export default function Page() {
             value={id}
             onChange={(e) => setId(e.target.value)}
             placeholder="아이디를 입력하세요"
-            leftIcon={<InputUserIcon />}
             error={errors.id}
             required
           />
@@ -78,7 +77,6 @@ export default function Page() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="비밀번호를 입력하세요"
             type="password"
-            leftIcon={<LockIcon />}
             error={errors.password}
             required
           />

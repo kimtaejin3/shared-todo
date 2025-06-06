@@ -67,7 +67,7 @@ export default function ProfilePage() {
         align="center"
         className="mt-6 bg-white rounded-2xl shadow-sm border border-gray-100 p-6"
       >
-        <Box className="relative mb-2">
+        <Box className="relative mb-6">
           <Flex
             align="center"
             justify="center"
@@ -107,10 +107,6 @@ export default function ProfilePage() {
           />
         </Box>
 
-        <Heading className="text-lg font-semibold text-gray-800">
-          {nickname}
-        </Heading>
-
         <form onSubmit={handleSave} className="w-full max-w-sm space-y-4">
           <Input
             id="nickname"
@@ -121,21 +117,9 @@ export default function ProfilePage() {
             error={isNicknameError ? "올바른 닉네임이 아닙니다." : ""}
           />
 
-          <Input
-            id="email"
-            label="이메일"
-            value={email}
-            disabled
-            leftIcon={<EmailIcon />}
-          />
+          <Input id="email" label="이메일" value={email} disabled />
 
-          <Input
-            id="userId"
-            label="내 ID"
-            value={userId}
-            disabled
-            leftIcon={<IdIcon />}
-          />
+          <Input id="userId" label="내 ID" value={userId} disabled />
 
           <Flex className="pt-4 flex-col gap-3">
             <Button type="submit" variant="primary" fullWidth size="lg">

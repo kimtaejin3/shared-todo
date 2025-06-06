@@ -5,10 +5,6 @@ import Image from "next/image";
 import logo from "@/assets/images/logo.png";
 import Link from "next/link";
 import Input from "@/components/shared/ui/Input";
-import LockIcon from "@/components/shared/icons/LockIcon";
-import ShieldIcon from "@/components/shared/icons/ShieldIcon";
-import GroupIcon from "@/components/shared/icons/GroupIcon";
-import UserIcon from "@/components/shared/icons/UserIcon";
 import Button from "@/components/shared/ui/Button";
 import { Container, Flex, Heading, Text } from "@radix-ui/themes";
 
@@ -73,7 +69,6 @@ export default function Page() {
             value={id}
             onChange={(e) => setId(e.target.value)}
             placeholder="사용할 아이디를 입력하세요"
-            leftIcon={<UserIcon />}
             error={errors.id}
             required
           />
@@ -84,7 +79,6 @@ export default function Page() {
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
             placeholder="사용할 닉네임을 입력하세요"
-            leftIcon={<GroupIcon />}
             error={errors.nickname}
             required
           />
@@ -96,7 +90,6 @@ export default function Page() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="비밀번호를 입력하세요"
             type="password"
-            leftIcon={<LockIcon />}
             error={errors.password}
             required
           />
@@ -108,7 +101,6 @@ export default function Page() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="비밀번호를 다시 입력하세요"
             type="password"
-            leftIcon={<ShieldIcon />}
             error={errors.confirmPassword}
             required
           />
